@@ -17,7 +17,7 @@ const HCMasterFormProjectLayoutPage = (props) => {
           >
             <div className="flex align-items-center text-white">
               <p className="text-2xl text-white">
-              Hot Cold Master Form {" > " + props.selectedHCMasterForm?._id} 
+                Hot Cold Master Form {" > " + props.selectedHCMasterForm?._id}
               </p>
             </div>
           </div>

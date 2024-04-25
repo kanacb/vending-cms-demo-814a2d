@@ -19,8 +19,8 @@ const breakdown = require("./breakdown/breakdown.service.js");
 
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
-    app.configure(users);
-    app.configure(userProfile);
+  app.configure(users);
+  app.configure(userProfile);
   app.configure(hCMasterForm);
   app.configure(cBMasterForm);
   app.configure(hcStage1);
@@ -36,5 +36,5 @@ module.exports = function (app) {
   app.configure(vmType);
   app.configure(machineMaster);
   app.configure(breakdown);
-    // ~cb-add-configure-service-name~
+  // ~cb-add-configure-service-name~
 };

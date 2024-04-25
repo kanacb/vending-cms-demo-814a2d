@@ -1,5 +1,3 @@
-const { Service } = require('feathers-mongoose');
+const { Service } = require("feathers-mongoose");
 
-exports.VmType = class VmType extends Service {
-  
-};
+exports.VmType = class VmType extends Service {};

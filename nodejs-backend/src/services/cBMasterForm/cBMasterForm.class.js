@@ -1,5 +1,3 @@
-const { Service } = require('feathers-mongoose');
+const { Service } = require("feathers-mongoose");
 
-exports.CBMasterForm = class CBMasterForm extends Service {
-  
-};
+exports.CBMasterForm = class CBMasterForm extends Service {};

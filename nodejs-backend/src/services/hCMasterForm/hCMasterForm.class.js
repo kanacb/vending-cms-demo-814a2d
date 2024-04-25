@@ -1,5 +1,3 @@
-const { Service } = require('feathers-mongoose');
+const { Service } = require("feathers-mongoose");
 
-exports.HCMasterForm = class HCMasterForm extends Service {
-  
-};
+exports.HCMasterForm = class HCMasterForm extends Service {};

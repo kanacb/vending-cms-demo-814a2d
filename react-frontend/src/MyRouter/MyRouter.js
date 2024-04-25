@@ -1,13 +1,14 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import ProtectedRoute from './ProtectedRoute';
-import NoMatch from './NoMatch';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
+import NoMatch from "./NoMatch";
 
-import LoginPage from '../components/LoginPage/LoginPage';
-import SignUpPage from '../components/LoginPage/SignUpPage';
-import Account from '../components/Account/Account';
-import Dashboard from '../components/Dashboard/Dashboard';
-import WhatToDoPage from '../components/WhatTodo';
+import LoginPage from "../components/LoginPage/LoginPage";
+import SignUpPage from "../components/LoginPage/SignUpPage";
+import Account from "../components/Account/Account";
+import Dashboard from "../components/Dashboard/Dashboard";
+import WhatToDoPage from "../components/WhatTodo";
+import AdminDashLayout from "../components/Dashboard/Admin/AdminDashLayout";
 
 import UsersPage from "../components/UsersPage/UsersPage";
 import SingleUsersPage from "../components/UsersPage/SingleUsersPage";
@@ -54,56 +55,162 @@ import SingleBreakdownPage from "../components/BreakdownPage/SingleBreakdownPage
 // ~cb-add-import~
 
 const MyRouter = () => {
-    return (
-        <Routes>
-            <Route path="" exact element={<Dashboard />} />
-            <Route path="/dashboard" exact element={<Dashboard />} />
-            <Route path="/login" exact element={<LoginPage />} />
-            <Route path="/signup" exact element={<SignUpPage />} />
+  return (
+    <Routes>
+      <Route path="" exact element={<Dashboard />} />
+      <Route path="/dashboard" exact element={<Dashboard />} />
+      <Route path="/login" exact element={<LoginPage />} />
+      <Route path="/signup" exact element={<SignUpPage />} />
 
-            <Route element={<ProtectedRoute redirectPath={'/login'} />}>
-                <Route path="/account" exact element={<Account />} />
-                    <Route path="/users" exact element={<UsersPage />} />
-                    <Route path="/users/:singleUsersId" exact element={<SingleUsersPage />} />
-                    <Route path="/hCMasterForm" exact element={<HCMasterFormPage />} />
-                    <Route path="/hCMasterForm/:singleHCMasterFormId" exact element={<HCMasterFormProjectLayoutPage />} />
-                    <Route path="/hCMasterForm/:singleHCMasterFormId/single" exact element={<SingleHCMasterFormPage />} />
-                    <Route path="/cBMasterForm" exact element={<CBMasterFormPage />} />
-                    <Route path="/cBMasterForm/:singleCBMasterFormId" exact element={<CBMasterFormProjectLayoutPage />} />
-                    <Route path="/cBMasterForm/:singleCBMasterFormId/single" exact element={<SingleCBMasterFormPage />} />
-                    <Route path="/hCMasterForm/:singleHCMasterFormId/hcStage1" exact element={<HcStage1ProjectLayoutPage />} />
-                    <Route path="/hCMasterForm/:singleHCMasterFormId/hcStage1/:singleHcStage1Id" exact element={<SingleHcStage1Page />} />
-                    <Route path="/hCMasterForm/:singleHCMasterFormId/hcStage2" exact element={<HcStage2ProjectLayoutPage />} />
-                    <Route path="/hCMasterForm/:singleHCMasterFormId/hcStage2/:singleHcStage2Id" exact element={<SingleHcStage2Page />} />
-                    <Route path="/hCMasterForm/:singleHCMasterFormId/hcStage1Agree" exact element={<HcStage1AgreeProjectLayoutPage />} />
-                    <Route path="/hCMasterForm/:singleHCMasterFormId/hcStage1Agree/:singleHcStage1AgreeId" exact element={<SingleHcStage1AgreePage />} />
-                    <Route path="/hCMasterForm/:singleHCMasterFormId/hcStage2Agree" exact element={<HcStage2AgreeProjectLayoutPage />} />
-                    <Route path="/hCMasterForm/:singleHCMasterFormId/hcStage2Agree/:singleHcStage2AgreeId" exact element={<SingleHcStage2AgreePage />} />
-                    <Route path="/cBMasterForm/:singleCBMasterFormId/cbStage1" exact element={<CbStage1ProjectLayoutPage />} />
-                    <Route path="/cBMasterForm/:singleCBMasterFormId/cbStage1/:singleCbStage1Id" exact element={<SingleCbStage1Page />} />
-                    <Route path="/cBMasterForm/:singleCBMasterFormId/cbStage2" exact element={<CbStage2ProjectLayoutPage />} />
-                    <Route path="/cBMasterForm/:singleCBMasterFormId/cbStage2/:singleCbStage2Id" exact element={<SingleCbStage2Page />} />
-                    <Route path="/cBMasterForm/:singleCBMasterFormId/cbStage1Agree" exact element={<CbStage1AgreeProjectLayoutPage />} />
-                    <Route path="/cBMasterForm/:singleCBMasterFormId/cbStage1Agree/:singleCbStage1AgreeId" exact element={<SingleCbStage1AgreePage />} />
-                    <Route path="/cBMasterForm/:singleCBMasterFormId/cbStage2Agree" exact element={<CbStage2AgreeProjectLayoutPage />} />
-                    <Route path="/cBMasterForm/:singleCBMasterFormId/cbStage2Agree/:singleCbStage2AgreeId" exact element={<SingleCbStage2AgreePage />} />
-                    <Route path="/opsCentre" exact element={<OpsCentrePage />} />
-                    <Route path="/opsCentre/:singleOpsCentreId" exact element={<SingleOpsCentrePage />} />
-                    <Route path="/locationMaster" exact element={<LocationMasterPage />} />
-                    <Route path="/locationMaster/:singleLocationMasterId" exact element={<SingleLocationMasterPage />} />
-                    <Route path="/vmType" exact element={<VmTypePage />} />
-                    <Route path="/vmType/:singleVmTypeId" exact element={<SingleVmTypePage />} />
-                    <Route path="/machineMaster" exact element={<MachineMasterPage />} />
-                    <Route path="/machineMaster/:singleMachineMasterId" exact element={<SingleMachineMasterPage />} />
-                    <Route path="/breakdown" exact element={<BreakdownPage />} />
-                    <Route path="/breakdown/:singleBreakdownId" exact element={<SingleBreakdownPage />} />
-                {/* ~cb-add-protected-route~ */}
-            </Route>
-            {/* ~cb-add-route~ */}
+      <Route element={<ProtectedRoute redirectPath={"/login"} />}>
+        <Route path="/account" exact element={<Account />} />
+        <Route path="/adminDash" exact element={<AdminDashLayout />} />
+        
+        <Route path="/users" exact element={<UsersPage />} />
+        <Route
+          path="/users/:singleUsersId"
+          exact
+          element={<SingleUsersPage />}
+        />
+        <Route path="/hCMasterForm" exact element={<HCMasterFormPage />} />
+        <Route
+          path="/hCMasterForm/:singleHCMasterFormId"
+          exact
+          element={<HCMasterFormProjectLayoutPage />}
+        />
+        <Route
+          path="/hCMasterForm/:singleHCMasterFormId/single"
+          exact
+          element={<SingleHCMasterFormPage />}
+        />
+        <Route path="/cBMasterForm" exact element={<CBMasterFormPage />} />
+        <Route
+          path="/cBMasterForm/:singleCBMasterFormId"
+          exact
+          element={<CBMasterFormProjectLayoutPage />}
+        />
+        <Route
+          path="/cBMasterForm/:singleCBMasterFormId/single"
+          exact
+          element={<SingleCBMasterFormPage />}
+        />
+        <Route
+          path="/hCMasterForm/:singleHCMasterFormId/hcStage1"
+          exact
+          element={<HcStage1ProjectLayoutPage />}
+        />
+        <Route
+          path="/hCMasterForm/:singleHCMasterFormId/hcStage1/:singleHcStage1Id"
+          exact
+          element={<SingleHcStage1Page />}
+        />
+        <Route
+          path="/hCMasterForm/:singleHCMasterFormId/hcStage2"
+          exact
+          element={<HcStage2ProjectLayoutPage />}
+        />
+        <Route
+          path="/hCMasterForm/:singleHCMasterFormId/hcStage2/:singleHcStage2Id"
+          exact
+          element={<SingleHcStage2Page />}
+        />
+        <Route
+          path="/hCMasterForm/:singleHCMasterFormId/hcStage1Agree"
+          exact
+          element={<HcStage1AgreeProjectLayoutPage />}
+        />
+        <Route
+          path="/hCMasterForm/:singleHCMasterFormId/hcStage1Agree/:singleHcStage1AgreeId"
+          exact
+          element={<SingleHcStage1AgreePage />}
+        />
+        <Route
+          path="/hCMasterForm/:singleHCMasterFormId/hcStage2Agree"
+          exact
+          element={<HcStage2AgreeProjectLayoutPage />}
+        />
+        <Route
+          path="/hCMasterForm/:singleHCMasterFormId/hcStage2Agree/:singleHcStage2AgreeId"
+          exact
+          element={<SingleHcStage2AgreePage />}
+        />
+        <Route
+          path="/cBMasterForm/:singleCBMasterFormId/cbStage1"
+          exact
+          element={<CbStage1ProjectLayoutPage />}
+        />
+        <Route
+          path="/cBMasterForm/:singleCBMasterFormId/cbStage1/:singleCbStage1Id"
+          exact
+          element={<SingleCbStage1Page />}
+        />
+        <Route
+          path="/cBMasterForm/:singleCBMasterFormId/cbStage2"
+          exact
+          element={<CbStage2ProjectLayoutPage />}
+        />
+        <Route
+          path="/cBMasterForm/:singleCBMasterFormId/cbStage2/:singleCbStage2Id"
+          exact
+          element={<SingleCbStage2Page />}
+        />
+        <Route
+          path="/cBMasterForm/:singleCBMasterFormId/cbStage1Agree"
+          exact
+          element={<CbStage1AgreeProjectLayoutPage />}
+        />
+        <Route
+          path="/cBMasterForm/:singleCBMasterFormId/cbStage1Agree/:singleCbStage1AgreeId"
+          exact
+          element={<SingleCbStage1AgreePage />}
+        />
+        <Route
+          path="/cBMasterForm/:singleCBMasterFormId/cbStage2Agree"
+          exact
+          element={<CbStage2AgreeProjectLayoutPage />}
+        />
+        <Route
+          path="/cBMasterForm/:singleCBMasterFormId/cbStage2Agree/:singleCbStage2AgreeId"
+          exact
+          element={<SingleCbStage2AgreePage />}
+        />
+        <Route path="/opsCentre" exact element={<OpsCentrePage />} />
+        <Route
+          path="/opsCentre/:singleOpsCentreId"
+          exact
+          element={<SingleOpsCentrePage />}
+        />
+        <Route path="/locationMaster" exact element={<LocationMasterPage />} />
+        <Route
+          path="/locationMaster/:singleLocationMasterId"
+          exact
+          element={<SingleLocationMasterPage />}
+        />
+        <Route path="/vmType" exact element={<VmTypePage />} />
+        <Route
+          path="/vmType/:singleVmTypeId"
+          exact
+          element={<SingleVmTypePage />}
+        />
+        <Route path="/machineMaster" exact element={<MachineMasterPage />} />
+        <Route
+          path="/machineMaster/:singleMachineMasterId"
+          exact
+          element={<SingleMachineMasterPage />}
+        />
+        <Route path="/breakdown" exact element={<BreakdownPage />} />
+        <Route
+          path="/breakdown/:singleBreakdownId"
+          exact
+          element={<SingleBreakdownPage />}
+        />
+        {/* ~cb-add-protected-route~ */}
+      </Route>
+      {/* ~cb-add-route~ */}
 
-            <Route path="*" element={<NoMatch />} />
-        </Routes>
-    );
+      <Route path="*" element={<NoMatch />} />
+    </Routes>
+  );
 };
 
 export default MyRouter;

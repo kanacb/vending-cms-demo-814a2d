@@ -17,7 +17,7 @@ const HcStage2ProjectLayoutPage = (props) => {
           >
             <div className="flex align-items-center text-white">
               <p className="text-2xl text-white">
-              Hot Cold Stage 2  {" > " + props.selectedHCMasterForm?.RefNo} 
+                Hot Cold Stage 2 {" > " + props.selectedHCMasterForm?.RefNo}
               </p>
             </div>
           </div>
