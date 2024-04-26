@@ -32,7 +32,7 @@ const LoginPage = (props) => {
       props
         .login({ email, password })
         .then(() => {
-          navigate("/");
+          navigate("/admin");
         })
         .catch(() => {});
     }
@@ -47,12 +47,66 @@ const LoginPage = (props) => {
     }
     if (password.length < 6) {
       setPasswordError(
-        "Please enter a valid password. Must be at least 6 characters",
+        "Please enter a valid password. Must be at least 6 characters"
       );
       isValid = false;
     }
     return isValid;
   };
+
+  // const loginBlock = 
+  // <div className="surface-ground px-4 py-8 md:px-6 lg:px-8">
+  //     <div className="flex flex-wrap shadow-2">
+  //         <div className="w-full lg:w-6 px-0 py-4 lg:p-7 bg-blue-50">
+  //             <img src="/demo/images/blocks/logos/bastion-700.svg" alt="Image" height="35" className="mb-6" />
+  //             <Carousel value={features} itemTemplate={(feature) =>
+  //                 <div className="text-center mb-8">
+  //                     <img src={`/demo/images/blocks/illustration/${feature.image}`} alt="Image" className="mb-6 w-6" />
+  //                     <div className="mx-auto font-medium text-xl mb-4 text-blue-900">{feature.title}</div>
+  //                     <p className="m-0 text-blue-700 line-height-3">{feature.text}</p>
+  //                 </div>} />
+  //         </div>
+  //         <div className="w-full lg:w-6 p-4 lg:p-7 surface-card">
+  //             <div className="flex align-items-center justify-content-between mb-7">
+  //                 <span className="text-2xl font-medium text-900">Login to Bastion</span>
+  //                 <a tabIndex="0" className="font-medium text-blue-500 hover:text-blue-700 cursor-pointer transition-colors transition-duration-150">Sign up</a>
+  //             </div>
+  //             <div className="flex justify-content-between">
+  //                 <button className="p-ripple mr-2 w-6 font-medium border-1 surface-border surface-100 py-3 px-2 p-component hover:surface-200 active:surface-300 text-900 cursor-pointer transition-colors transition-duration-150 inline-flex align-items-center justify-content-center">
+  //                     <i className="pi pi-facebook text-indigo-500 mr-2"></i>
+  //                     <span>Sign in With Facebook</span>
+  //                     <Ripple />
+  //                 </button>
+  //                 <button className="p-ripple ml-2 w-6 font-medium border-1 surface-border surface-100 py-3 px-2 p-component hover:surface-200 active:surface-300 text-900 cursor-pointer transition-colors transition-duration-150 inline-flex align-items-center justify-content-center">
+  //                     <i className="pi pi-google text-red-500 mr-2"></i>
+  //                     <span>Sign in With Google</span>
+  //                     <Ripple />
+  //                 </button>
+  //             </div>
+  //             <Divider align="center" className="my-4">
+  //                 <span className="text-600 font-normal text-sm">OR</span>
+  //             </Divider>
+  
+  //             <label htmlFor="email4" className="block text-900 font-medium mb-2">Email</label>
+  //             <InputText id="email4" type="text" placeholder="Email address" className="w-full mb-3 p-3" />
+  
+  //             <label htmlFor="password4" className="block text-900 font-medium mb-2">Password</label>
+  //             <InputText id="password4" type="password" placeholder="Password" className="w-full mb-3 p-3" />
+  
+  //             <div className="flex align-items-center justify-content-between mb-6">
+  //                 <div className="flex align-items-center">
+  //                     <Checkbox id="rememberme" className="mr-2" checked={checked4} onChange={(e) => setChecked4(e.checked)} />
+  //                     <label htmlFor="rememberme">Remember me</label>
+  //                 </div>
+  //                 <a className="font-medium text-blue-500 hover:text-blue-700 cursor-pointer transition-colors transition-duration-150">Forgot password?</a>
+  //             </div>
+  
+  //             <Button label="Sign In" className="w-full py-3 font-medium" />
+  //         </div>
+  //     </div>
+  // </div>
+  //     ;
+
 
   return (
     <div className="grid p-fluid flex flex-column align-items-center h-screen">

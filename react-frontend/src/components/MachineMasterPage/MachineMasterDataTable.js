@@ -92,14 +92,14 @@ const MachineMasterDataTable = ({
     >
       <Column
         field="ownership"
-        header="Ownership"
+        header="Owner"
         body={pTemplate0}
         sortable
         style={{ minWidth: "8rem" }}
       />
       <Column
         field="vmcode"
-        header="Vmcode"
+        header="VM code"
         body={pTemplate1}
         sortable
         style={{ minWidth: "8rem" }}
@@ -118,12 +118,12 @@ const MachineMasterDataTable = ({
         sortable
         style={{ minWidth: "8rem" }}
       />
-      <Column
+      {/* <Column
         field="locationDesc"
         header="Location Desc"
         body={pTemplate4}
         style={{ minWidth: "8rem" }}
-      />
+      /> */}
       <Column
         field="modelNo"
         header="Model No"
@@ -145,7 +145,7 @@ const MachineMasterDataTable = ({
         sortable
         style={{ minWidth: "8rem" }}
       />
-      <Column
+      {/* <Column
         field="purchaseDate"
         header="purchaseDate"
         body={pTemplate8}
@@ -158,17 +158,17 @@ const MachineMasterDataTable = ({
         body={pTemplate9}
         sortable
         style={{ minWidth: "8rem" }}
-      />
-      <Column
+      /> */}
+      {/* <Column
         field="description"
         header="Description"
         body={pTemplate10}
         style={{ minWidth: "8rem" }}
-      />
+      /> */}
 
       <Column header="Edit" body={editTemplate} />
       <Column header="Delete" body={deleteTemplate} />
-      <Column
+      {/* <Column
         field="createdAt"
         header="created"
         body={pCreatedAt}
@@ -195,7 +195,7 @@ const MachineMasterDataTable = ({
         body={pUpdatedBy}
         sortable
         style={{ minWidth: "8rem" }}
-      />
+      /> */}
     </DataTable>
   );
 };

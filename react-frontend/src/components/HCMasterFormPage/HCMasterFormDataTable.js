@@ -22,7 +22,6 @@ const HCMasterFormDataTable = ({
   const pTemplate4 = (rowData, { rowIndex }) => <p>{rowData.Branch}</p>;
   const calendarTemplate5 = (rowData, { rowIndex }) => (
     <Calendar
-      className="w-20rem"
       dateFormat="dd/mm/yy"
       placeholder={"dd/mm/yy"}
       value={new Date(rowData.DateInspec)}
@@ -30,7 +29,6 @@ const HCMasterFormDataTable = ({
   );
   const calendarTemplate6 = (rowData, { rowIndex }) => (
     <Calendar
-      className="w-20rem"
       dateFormat="dd/mm/yy"
       placeholder={"dd/mm/yy"}
       value={new Date(rowData.DateRecall)}
@@ -149,7 +147,7 @@ const HCMasterFormDataTable = ({
         header="Date Recall"
         body={calendarTemplate6}
         sortable
-        style={{ minWidth: "8rem" }}
+        style={{ maxWidth: "fit-content" }}
       />
       <Column
         field="RecallLoc"
@@ -161,7 +159,7 @@ const HCMasterFormDataTable = ({
 
       <Column header="Edit" body={editTemplate} />
       <Column header="Delete" body={deleteTemplate} />
-      <Column
+      {/* <Column
         field="createdAt"
         header="created"
         body={pCreatedAt}
@@ -188,7 +186,7 @@ const HCMasterFormDataTable = ({
         body={pUpdatedBy}
         sortable
         style={{ minWidth: "8rem" }}
-      />
+      /> */}
     </DataTable>
   );
 };

@@ -48,12 +48,12 @@ const Dashboard = (props) => {
               </Link>
             </div>
             <div className="col-12 lg:col-6 xl:col-4">
-              <Link to="/opsCentre">
+              <Link to="/admin">
                 <div
                   className="card mb-0 flex flex-column align-items-center justify-content-center hover zoom"
                   style={{ height: "10rem" }}
                 >
-                  <div className="text-900 font-medium text-lg">OpsCentre</div>
+                  <div className="text-900 font-medium text-lg">Admin Dash</div>
                 </div>
               </Link>
             </div>

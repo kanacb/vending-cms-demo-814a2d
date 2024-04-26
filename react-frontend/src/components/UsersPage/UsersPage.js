@@ -31,23 +31,10 @@ const UsersPage = (props) => {
       .find({
         query: {
           $limit: 10000,
-          $populate: [
-            {
-              path: "createdBy",
-              service: "users",
-              select: ["name"],
-            },
-            {
-              path: "updatedBy",
-              service: "users",
-              select: ["name"],
-            },
-          ],
         },
       })
       .then((res) => {
         let results = res.data;
-
         setData(results);
       })
       .catch((error) => {
@@ -121,8 +108,8 @@ const UsersPage = (props) => {
             message: error.message || "Failed to delete all records",
           });
           console.log({ error });
-        }),
-      ),
+        })
+      )
     );
     await props.alert({
       title: "Users",
@@ -174,7 +161,7 @@ const UsersPage = (props) => {
           />
           <SplitButton
             model={menuItems.filter(
-              (m) => !(m.icon === "pi pi-trash" && data?.length === 0),
+              (m) => !(m.icon === "pi pi-trash" && data?.length === 0)
             )}
             dropdownIcon="pi pi-ellipsis-v"
             buttonClassName="hidden"

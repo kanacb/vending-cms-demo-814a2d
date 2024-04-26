@@ -116,14 +116,12 @@ const HcStage2DataTable = ({ items, onEditRow, onRowDelete, onRowClick }) => {
         field="RefNo"
         header="RefNo"
         body={pTemplate0}
-        style={{ minWidth: "8rem" }}
       />
       <Column
         field="ExternalBody"
         header="ExternalBody"
         body={pTemplate1}
         sortable
-        style={{ minWidth: "8rem" }}
       />
       <Column
         field="InternalBody"
@@ -291,7 +289,6 @@ const HcStage2DataTable = ({ items, onEditRow, onRowDelete, onRowClick }) => {
         header="IceMaker"
         body={pTemplate26}
         sortable
-        style={{ minWidth: "8rem" }}
       />
 
       <Column header="Edit" body={editTemplate} />

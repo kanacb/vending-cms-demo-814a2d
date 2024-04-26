@@ -64,7 +64,7 @@ const MyRouter = () => {
 
       <Route element={<ProtectedRoute redirectPath={"/login"} />}>
         <Route path="/account" exact element={<Account />} />
-        <Route path="/adminDash" exact element={<AdminDashLayout />} />
+        <Route path="/admin" exact element={<AdminDashLayout />} />
         
         <Route path="/users" exact element={<UsersPage />} />
         <Route

@@ -167,7 +167,7 @@ const HcStage2Page = (props) => {
   ];
 
   return (
-    <div className="mt-5" style={{ minHeight: "calc(90vh - 9rem)" }}>
+    <div className="mt-5" style={{ minHeight: "calc(90vh - 9rem)", maxWidth : '80vw' }}>
       <div className="grid">
         <div className="col-6 flex justify-content-start">
           <h3 className="mb-0 ml-2">Hot Cold Stage 2 </h3>
