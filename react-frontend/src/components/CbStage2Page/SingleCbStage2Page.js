@@ -59,8 +59,7 @@ const SingleCbStage2Page = (props) => {
             <div className="card w-full">
                 <div className="grid ">
 
-            <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Ref</label><p className="" >{_entity?.Ref?.RefNo}</p></div>
-                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">ExternalBody</label><p className="" >{_entity?.ExternalBody}</p></div>
+            <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">ExternalBody</label><p className="" >{_entity?.ExternalBody}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">InternalBody</label><p className="" >{_entity?.InternalBody}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">DisplayPanel</label><p className="" >{_entity?.DisplayPanel}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">DoorHandle</label><p className="" >{_entity?.DoorHandle}</p></div>
@@ -83,34 +82,36 @@ const SingleCbStage2Page = (props) => {
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Wiring</label><p className="" >{_entity?.Wiring}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Motor</label><p className="" >{_entity?.Motor}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Remarks</label><p className="" >{_entity?.remarks}</p></div>
-            <label className="text-sm">Ref</label>
+            <div className="col-12 md:col-6 lg:col-3"><label className="text-sm">Ref</label>
             <p>{Ref.map((elem) => (
                     <Link key={elem._id} to={`/cBMasterForm/${elem._id}`}>
                         <div className="card">
-                            <p>{elem.RefNo}</p>
+                            <p className="text-xl text-primary">{elem.RefNo}</p>
                         </div>
                     </Link>
-                ))}</p>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">created</label>
-                        <p className="">{moment(_entity?.createdAt).fromNow()}</p>
-                    </div>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">updated</label>
-                        <p className="">{moment(_entity?.updatedAt).fromNow()}</p>
-                    </div>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">createdBy</label>
-                        <p className="">{_entity?.createdBy?.name}</p>
-                    </div>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">lastUpdatedBy</label>
-                        <p className="">{_entity?.updatedBy?.name}</p>
-                    </div>
+                ))}</p></div>
+
+            <div className="col-12">&nbsp;</div>
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">created</label>
+                <p className="">{moment(_entity?.createdAt).fromNow()}</p>
+            </div>
+            
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">updated</label>
+                <p className="">{moment(_entity?.updatedAt).fromNow()}</p>
+            </div>
+            
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">createdBy</label>
+                <p className="">{_entity?.createdBy?.name}</p>
+            </div>
+            
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">lastUpdatedBy</label>
+                <p className="">{_entity?.updatedBy?.name}</p>
+            </div>
+
                 </div>
             </div>
         </div>

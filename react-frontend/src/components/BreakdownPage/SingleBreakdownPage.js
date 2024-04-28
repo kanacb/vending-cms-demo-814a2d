@@ -11,6 +11,7 @@ const SingleBreakdownPage = (props) => {
     const urlParams = useParams();
     const [_entity, set_entity] = useState();
 
+    const [opsCentreId, setOpsCentreId] = useState([]);
     const [locationId, setLocationId] = useState([]);
     const [machineId, setMachineId] = useState([]);
     const [technicianId, setTechnicianId] = useState([]);
@@ -27,9 +28,15 @@ const SingleBreakdownPage = (props) => {
                 path: "updatedBy",
                 service: "users",
                 select: ["name"],
-              },"locationId","machineId","technicianId"] }})
+              },"opsCentreId","locationId","machineId","technicianId"] }})
             .then((res) => {
                 set_entity(res || {});
+                const opsCentreId = Array.isArray(res.opsCentreId)
+            ? res.opsCentreId.map((elem) => ({ _id: elem._id, name: elem.name }))
+            : res.opsCentreId
+                ? [{ _id: res.opsCentreId._id, name: res.opsCentreId.name }]
+                : [];
+        setOpsCentreId(opsCentreId);
                 const locationId = Array.isArray(res.locationId)
             ? res.locationId.map((elem) => ({ _id: elem._id, name: elem.name }))
             : res.locationId
@@ -73,58 +80,64 @@ const SingleBreakdownPage = (props) => {
             <div className="card w-full">
                 <div className="grid ">
 
-            <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Ops Centre Id</label><p className="" >{_entity?.opsCentreId}</p></div>
-                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">locationId</label><p className="" >{_entity?.locationId?.name}</p></div>
-                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">visitDate</label><p className="" >{_entity?.visitDate}</p></div>
-                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">reportDate</label><p className="" >{_entity?.reportDate}</p></div>
-                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Reason For Breakdown</label><p className="" >{_entity?.reasonForBreakdown}</p></div>
-                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Technician Remark</label><p className="" >{_entity?.technicianRemark}</p></div>
-                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">machineId</label><p className="" >{_entity?.machineId?.vmcode}</p></div>
-                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">technicianId</label><p className="" >{_entity?.technicianId?.name}</p></div>
-            <label className="text-sm">locationId</label>
+            <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Visited Date</label><p className="m-0 ml-3" >{moment(_entity?.visitDate).fromNow()}</p></div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Reported Date</label><p className="m-0 ml-3" >{moment(_entity?.reportDate).fromNow()}</p></div>
+                    <div className="col-12 md:col-12 lg:col-6"><label className="text-sm text-primary">Reason For Breakdown</label><p className="m-0 ml-3" >{_entity?.reasonForBreakdown}</p></div>
+                    <div className="col-12 md:col-12 lg:col-6"><label className="text-sm text-primary">Technician Remarks</label><p className="m-0 ml-3" >{_entity?.technicianRemark}</p></div>
+            <div className="col-12 md:col-6 lg:col-3"><label className="text-sm">opsCentreId</label>
+            <p>{opsCentreId.map((elem) => (
+                    <Link key={elem._id} to={`/opsCentre/${elem._id}`}>
+                        <div className="card">
+                            <p className="text-xl text-primary">{elem.name}</p>
+                        </div>
+                    </Link>
+                ))}</p></div>
+            <div className="col-12 md:col-6 lg:col-3"><label className="text-sm">locationId</label>
             <p>{locationId.map((elem) => (
                     <Link key={elem._id} to={`/locationMaster/${elem._id}`}>
                         <div className="card">
-                            <p>{elem.name}</p>
+                            <p className="text-xl text-primary">{elem.name}</p>
                         </div>
                     </Link>
-                ))}</p>
-            <label className="text-sm">machineId</label>
+                ))}</p></div>
+            <div className="col-12 md:col-6 lg:col-3"><label className="text-sm">Machine</label>
             <p>{machineId.map((elem) => (
                     <Link key={elem._id} to={`/machineMaster/${elem._id}`}>
                         <div className="card">
-                            <p>{elem.vmcode}</p>
+                            <p className="text-xl text-primary">{elem.vmcode}</p>
                         </div>
                     </Link>
-                ))}</p>
-            <label className="text-sm">technicianId</label>
+                ))}</p></div>
+            <div className="col-12 md:col-6 lg:col-3"><label className="text-sm">Technician</label>
             <p>{technicianId.map((elem) => (
                     <Link key={elem._id} to={`/users/${elem._id}`}>
                         <div className="card">
-                            <p>{elem.name}</p>
+                            <p className="text-xl text-primary">{elem.name}</p>
                         </div>
                     </Link>
-                ))}</p>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">created</label>
-                        <p className="">{moment(_entity?.createdAt).fromNow()}</p>
-                    </div>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">updated</label>
-                        <p className="">{moment(_entity?.updatedAt).fromNow()}</p>
-                    </div>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">createdBy</label>
-                        <p className="">{_entity?.createdBy?.name}</p>
-                    </div>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">lastUpdatedBy</label>
-                        <p className="">{_entity?.updatedBy?.name}</p>
-                    </div>
+                ))}</p></div>
+
+            <div className="col-12">&nbsp;</div>
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">created</label>
+                <p className="">{moment(_entity?.createdAt).fromNow()}</p>
+            </div>
+            
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">updated</label>
+                <p className="">{moment(_entity?.updatedAt).fromNow()}</p>
+            </div>
+            
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">createdBy</label>
+                <p className="">{_entity?.createdBy?.name}</p>
+            </div>
+            
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">lastUpdatedBy</label>
+                <p className="">{_entity?.updatedBy?.name}</p>
+            </div>
+
                 </div>
             </div>
         </div>

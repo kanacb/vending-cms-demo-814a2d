@@ -6,6 +6,7 @@ import { Button } from "primereact/button";
 import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
 import { Calendar } from 'primereact/calendar';
+import { InputTextarea } from 'primereact/inputtextarea';
 
 
 const conditionArray = ["GOOD","BAD"];
@@ -29,6 +30,7 @@ const BreakdownCreateDialogComponent = (props) => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
+    const [opsCentreId, setOpsCentreId] = useState([])
     const [locationId, setLocationId] = useState([])
     const [machineId, setMachineId] = useState([])
     const [technicianId, setTechnicianId] = useState([])
@@ -42,7 +44,7 @@ const BreakdownCreateDialogComponent = (props) => {
 
     const onSave = async () => {
         let _data = {
-            opsCentreId: _entity?.opsCentreId,
+            opsCentreId: _entity?.opsCentreId?._id,
             locationId: _entity?.locationId?._id,
             visitDate: _entity?.visitDate,
             reportDate: _entity?.reportDate,
@@ -64,6 +66,12 @@ const BreakdownCreateDialogComponent = (props) => {
             .service("breakdown")
             .find({ query: { $limit: 10000 ,  _id :  { $in :[result._id]}, $populate : [
                 
+                {
+                    path : "opsCentreId",
+                    service : "opsCentre",
+                    select:["name"]
+                }
+            ,
                 {
                     path : "locationId",
                     service : "locationMaster",
@@ -95,6 +103,20 @@ const BreakdownCreateDialogComponent = (props) => {
     };
 
      useEffect(() => {
+                    //on mount opsCentre
+                    client
+                        .service("opsCentre")
+                        .find({ query: { $limit: 10000, $sort: { createdAt: -1 } } })
+                        .then((res) => {
+                            setOpsCentreId(res.data.map((e) => { return { name: e['name'], value: e._id }}));
+                        })
+                        .catch((error) => {
+                            console.log({ error });
+                            props.alert({ title: "OpsCentre", type: "error", message: error.message || "Failed get opsCentre" });
+                        });
+                }, []);
+
+    useEffect(() => {
                     //on mount locationMaster
                     client
                         .service("locationMaster")
@@ -149,6 +171,7 @@ const BreakdownCreateDialogComponent = (props) => {
         setError("");
     };
 
+    const opsCentreIdOptions = opsCentreId.map((elem) => ({ name: elem.name, value: elem.value }));
     const locationIdOptions = locationId.map((elem) => ({ name: elem.name, value: elem.value }));
     const machineIdOptions = machineId.map((elem) => ({ name: elem.name, value: elem.value }));
     const technicianIdOptions = technicianId.map((elem) => ({ name: elem.name, value: elem.value }));
@@ -159,51 +182,57 @@ const BreakdownCreateDialogComponent = (props) => {
             style={{ maxWidth: "55vw" }} role="breakdown-create-dialog-component">
             <div className="col-12 md:col-6 field mt-5">
                 <span className="p-float-label">
-                    <InputText id="opsCentreId" type="text" value={_entity?.opsCentreId} onChange={(e) => setValByKey("opsCentreId", e.target.value)}  />
-                    <label htmlFor="opsCentreId">Ops Centre Id:</label>
+                    <Dropdown id="opsCentreId" value={_entity?.opsCentreId} optionLabel="name" optionValue="value" options={opsCentreIdOptions} onChange={(e) => setValByKey("opsCentreId", {_id : e.value})} />
+                    <label htmlFor="opsCentreId">opsCentreId:</label>
                 </span>
             </div>
-            <div>
-                <p className="m-0">locationId:</p>
-                <Dropdown id="locationId" value={_entity?.locationId} optionLabel="name" optionValue="value" options={locationIdOptions} onChange={(e) => setValByKey("locationId", {_id : e.value})} />
+            <div className="col-12 md:col-6 field mt-5">
+                <span className="p-float-label">
+                    <Dropdown id="locationId" value={_entity?.locationId} optionLabel="name" optionValue="value" options={locationIdOptions} onChange={(e) => setValByKey("locationId", {_id : e.value})} />
+                    <label htmlFor="locationId">locationId:</label>
+                </span>
             </div>
             <div className="col-12 md:col-6 field mt-5">
                 <span className="p-float-label">
                     <Calendar id="visitDate" dateFormat="dd/mm/yy" placeholder={"dd/mm/yy"} value={new Date(_entity?.visitDate)} onChange={ (e) => setValByKey("visitDate", new Date(e.target.value))} showIcon showButtonBar ></Calendar>
-                    <label htmlFor="visitDate">visitDate:</label>
+                    <label htmlFor="visitDate">Visited Date:</label>
                 </span>
             </div>
             <div className="col-12 md:col-6 field mt-5">
                 <span className="p-float-label">
                     <Calendar id="reportDate" dateFormat="dd/mm/yy" placeholder={"dd/mm/yy"} value={new Date(_entity?.reportDate)} onChange={ (e) => setValByKey("reportDate", new Date(e.target.value))} showIcon showButtonBar ></Calendar>
-                    <label htmlFor="reportDate">reportDate:</label>
+                    <label htmlFor="reportDate">Reported Date:</label>
                 </span>
             </div>
             <div className="col-12 md:col-6 field mt-5">
                 <span className="p-float-label">
-                    <InputText id="reasonForBreakdown" type="text" value={_entity?.reasonForBreakdown} onChange={(e) => setValByKey("reasonForBreakdown", e.target.value)}  />
+                    <InputTextarea id="reasonForBreakdown" rows={5} cols={30} value={_entity?.reasonForBreakdown} onChange={ (e) => setValByKey("reasonForBreakdown", e.target.value)} autoResize />
                     <label htmlFor="reasonForBreakdown">Reason For Breakdown:</label>
                 </span>
             </div>
             <div className="col-12 md:col-6 field mt-5">
                 <span className="p-float-label">
-                    <InputText id="technicianRemark" type="text" value={_entity?.technicianRemark} onChange={(e) => setValByKey("technicianRemark", e.target.value)}  />
-                    <label htmlFor="technicianRemark">Technician Remark:</label>
+                    <InputTextarea id="technicianRemark" rows={5} cols={30} value={_entity?.technicianRemark} onChange={ (e) => setValByKey("technicianRemark", e.target.value)} autoResize />
+                    <label htmlFor="technicianRemark">Technician Remarks:</label>
                 </span>
             </div>
             <div className="col-12 md:col-6 field mt-5">
                 <span className="p-float-label">
                     <Dropdown id="condition" value={_entity?.condition} options={conditionOptions} optionLabel="name" optionValue="value" onChange={(e) => setValByKey("condition", e.value)} />
-                    <label htmlFor="condition">condition:</label>
+                    <label htmlFor="condition">Condition:</label>
                 </span>
             </div>
-            <div>
-                <p className="m-0">machineId:</p>
-                <Dropdown id="machineId" value={_entity?.machineId} optionLabel="name" optionValue="value" options={machineIdOptions} onChange={(e) => setValByKey("machineId", {_id : e.value})} />
+            <div className="col-12 md:col-6 field mt-5">
+                <span className="p-float-label">
+                    <Dropdown id="machineId" value={_entity?.machineId} optionLabel="name" optionValue="value" options={machineIdOptions} onChange={(e) => setValByKey("machineId", {_id : e.value})} />
+                    <label htmlFor="machineId">Machine:</label>
+                </span>
             </div>
-            <div>
-                <p className="m-0">technicianId:</p>
-                <Dropdown id="technicianId" value={_entity?.technicianId} optionLabel="name" optionValue="value" options={technicianIdOptions} onChange={(e) => setValByKey("technicianId", {_id : e.value})} />
+            <div className="col-12 md:col-6 field mt-5">
+                <span className="p-float-label">
+                    <Dropdown id="technicianId" value={_entity?.technicianId} optionLabel="name" optionValue="value" options={technicianIdOptions} onChange={(e) => setValByKey("technicianId", {_id : e.value})} />
+                    <label htmlFor="technicianId">Technician:</label>
+                </span>
             </div>
                 <small className="p-error">
                     {Array.isArray(error)

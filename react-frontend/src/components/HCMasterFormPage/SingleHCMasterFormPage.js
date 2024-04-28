@@ -59,30 +59,32 @@ const SingleHCMasterFormPage = (props) => {
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">SerialNo</label><p className="" >{_entity?.SerialNo}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">ManuYear</label><p className="" >{_entity?.ManuYear}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Branch</label><p className="" >{_entity?.Branch}</p></div>
-                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Date Inspec</label>{moment(_entity?.DateInspec).fromNow()}</div>
-                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Date Recall</label>{moment(_entity?.DateRecall).fromNow()}</div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Date Inspec</label><p className="m-0 ml-3" >{moment(_entity?.DateInspec).fromNow()}</p></div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Date Recall</label><p className="m-0 ml-3" >{moment(_entity?.DateRecall).fromNow()}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">RecallLoc</label><p className="" >{_entity?.RecallLoc}</p></div>
             
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">created</label>
-                        <p className="">{moment(_entity?.createdAt).fromNow()}</p>
-                    </div>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">updated</label>
-                        <p className="">{moment(_entity?.updatedAt).fromNow()}</p>
-                    </div>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">createdBy</label>
-                        <p className="">{_entity?.createdBy?.name}</p>
-                    </div>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">lastUpdatedBy</label>
-                        <p className="">{_entity?.updatedBy?.name}</p>
-                    </div>
+
+            <div className="col-12">&nbsp;</div>
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">created</label>
+                <p className="">{moment(_entity?.createdAt).fromNow()}</p>
+            </div>
+            
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">updated</label>
+                <p className="">{moment(_entity?.updatedAt).fromNow()}</p>
+            </div>
+            
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">createdBy</label>
+                <p className="">{_entity?.createdBy?.name}</p>
+            </div>
+            
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">lastUpdatedBy</label>
+                <p className="">{_entity?.updatedBy?.name}</p>
+            </div>
+
                 </div>
             </div>
         </div>

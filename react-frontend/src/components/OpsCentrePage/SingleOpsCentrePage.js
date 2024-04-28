@@ -58,26 +58,28 @@ const SingleOpsCentrePage = (props) => {
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Code</label><p className="" >{_entity?.code}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Description</label><p className="" >{_entity?.description}</p></div>
             
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">created</label>
-                        <p className="">{moment(_entity?.createdAt).fromNow()}</p>
-                    </div>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">updated</label>
-                        <p className="">{moment(_entity?.updatedAt).fromNow()}</p>
-                    </div>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">createdBy</label>
-                        <p className="">{_entity?.createdBy?.name}</p>
-                    </div>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">lastUpdatedBy</label>
-                        <p className="">{_entity?.updatedBy?.name}</p>
-                    </div>
+
+            <div className="col-12">&nbsp;</div>
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">created</label>
+                <p className="">{moment(_entity?.createdAt).fromNow()}</p>
+            </div>
+            
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">updated</label>
+                <p className="">{moment(_entity?.updatedAt).fromNow()}</p>
+            </div>
+            
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">createdBy</label>
+                <p className="">{_entity?.createdBy?.name}</p>
+            </div>
+            
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">lastUpdatedBy</label>
+                <p className="">{_entity?.updatedBy?.name}</p>
+            </div>
+
                 </div>
             </div>
         </div>

@@ -24,6 +24,9 @@ const BreakdownFakerDialogComponent = (props) => {
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(false);
     
+                const [opsCentreIdIds, setopsCentreIdIds] = useState();
+                
+
                 const [locationIdIds, setlocationIdIds] = useState();
                 
 
@@ -38,6 +41,12 @@ const BreakdownFakerDialogComponent = (props) => {
         setFakerCount(1);
        
         client
+            .service("opsCentre")
+            .find({ query: { $select: ["_id","name"] } })
+            .then((data) => {
+              setopsCentreIdIds(data.data);
+            });
+client
             .service("locationMaster")
             .find({ query: { $select: ["_id","name"] } })
             .then((data) => {
@@ -59,7 +68,7 @@ client
     }, [props.show]);
 
     const onRun = async () => {
-        let fakeData = breakdownFakerFactory(fakerCount,locationIdIds,machineIdIds,technicianIdIds);
+        let fakeData = breakdownFakerFactory(fakerCount,opsCentreIdIds,locationIdIds,machineIdIds,technicianIdIds);
 
         setLoading(true);
         const promises = fakeData.map((elem) => client.service("breakdown").create(elem));

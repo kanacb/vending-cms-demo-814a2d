@@ -59,48 +59,49 @@ const SingleCbStage1AgreePage = (props) => {
             <div className="card w-full">
                 <div className="grid ">
 
-            <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Ref</label><p className="" >{_entity?.Ref?.RefNo}</p></div>
-                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">TechName</label><p className="" >{_entity?.TechName}</p></div>
+            <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">TechName</label><p className="" >{_entity?.TechName}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">TechSign</label><p className="" >{_entity?.TechSign}</p></div>
-                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">TechDate</label>{moment(_entity?.TechDate).fromNow()}</div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">TechDate</label><p className="m-0 ml-3" >{moment(_entity?.TechDate).fromNow()}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">TechProceed</label><p className="" >{_entity?.TechProceed}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">SvName</label><p className="" >{_entity?.SvName}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">SvSign</label><p className="" >{_entity?.SvSign}</p></div>
-                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">SvDate</label>{moment(_entity?.SvDate).fromNow()}</div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">SvDate</label><p className="m-0 ml-3" >{moment(_entity?.SvDate).fromNow()}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">SvProcedd</label><p className="" >{_entity?.SvProcedd}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">MngrName</label><p className="" >{_entity?.MngrName}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">MngrSign</label><p className="" >{_entity?.MngrSign}</p></div>
-                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">MngrDate</label>{moment(_entity?.MngrDate).fromNow()}</div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">MngrDate</label><p className="m-0 ml-3" >{moment(_entity?.MngrDate).fromNow()}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">MngrProceed</label><p className="" >{_entity?.MngrProceed}</p></div>
                     <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Remarks</label><p className="" >{_entity?.Remarks}</p></div>
-            <label className="text-sm">Ref</label>
+            <div className="col-12 md:col-6 lg:col-3"><label className="text-sm">Ref</label>
             <p>{Ref.map((elem) => (
                     <Link key={elem._id} to={`/cBMasterForm/${elem._id}`}>
                         <div className="card">
-                            <p>{elem.RefNo}</p>
+                            <p className="text-xl text-primary">{elem.RefNo}</p>
                         </div>
                     </Link>
-                ))}</p>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">created</label>
-                        <p className="">{moment(_entity?.createdAt).fromNow()}</p>
-                    </div>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">updated</label>
-                        <p className="">{moment(_entity?.updatedAt).fromNow()}</p>
-                    </div>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">createdBy</label>
-                        <p className="">{_entity?.createdBy?.name}</p>
-                    </div>
-                    
-                    <div className="col-12 md:col-6 lg:col-3">
-                        <label className="text-sm text-primary">lastUpdatedBy</label>
-                        <p className="">{_entity?.updatedBy?.name}</p>
-                    </div>
+                ))}</p></div>
+
+            <div className="col-12">&nbsp;</div>
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">created</label>
+                <p className="">{moment(_entity?.createdAt).fromNow()}</p>
+            </div>
+            
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">updated</label>
+                <p className="">{moment(_entity?.updatedAt).fromNow()}</p>
+            </div>
+            
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">createdBy</label>
+                <p className="">{_entity?.createdBy?.name}</p>
+            </div>
+            
+            <div className="col-12 md:col-6 lg:col-3">
+                <label className="text-sm text-primary">lastUpdatedBy</label>
+                <p className="">{_entity?.updatedBy?.name}</p>
+            </div>
+
                 </div>
             </div>
         </div>

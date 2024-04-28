@@ -15,22 +15,7 @@ const SingleUsersPage = (props) => {
     //on mount
     client
       .service("users")
-      .get(urlParams.singleUsersId, {
-        query: {
-          $populate: [
-            {
-              path: "createdBy",
-              service: "users",
-              select: ["name"],
-            },
-            {
-              path: "updatedBy",
-              service: "users",
-              select: ["name"],
-            },
-          ],
-        },
-      })
+      .get(urlParams.singleUsersId)
       .then((res) => {
         set_entity(res || {});
       })

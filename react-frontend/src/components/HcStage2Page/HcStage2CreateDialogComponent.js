@@ -180,9 +180,11 @@ const HcStage2CreateDialogComponent = (props) => {
         <Dialog header="Create Hot Cold Stage 2" visible={props.show} closable={false} onHide={props.onHide} modal style={{ width: "40vw" }} className="min-w-max" footer={renderFooter()} resizable={false}>
             <div className="grid p-fluid overflow-y-auto"
             style={{ maxWidth: "55vw" }} role="hcStage2-create-dialog-component">
-            <div>
-                <p className="m-0">RefNo:</p>
-                <Dropdown id="RefNo" value={_entity?.RefNo} optionLabel="name" optionValue="value" options={RefNoOptions} onChange={(e) => setValByKey("RefNo", {_id : e.value})} />
+            <div className="col-12 md:col-6 field mt-5">
+                <span className="p-float-label">
+                    <Dropdown id="RefNo" value={_entity?.RefNo} optionLabel="name" optionValue="value" options={RefNoOptions} onChange={(e) => setValByKey("RefNo", {_id : e.value})} />
+                    <label htmlFor="RefNo">RefNo:</label>
+                </span>
             </div>
             <div className="col-12 md:col-6 field mt-5">
                 <span className="p-float-label">

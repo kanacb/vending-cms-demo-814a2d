@@ -10,7 +10,7 @@ module.exports = function (app) {
         lowercase: false,
         default: "",
       },
-      locationId: { type: Schema.Types.ObjectId, ref: "locationMaster" },
+      locationId: { type: Schema.Types.ObjectId, ref: "location_master" },
       visitDate: { type: Date },
       reportDate: { type: Date },
       reasonForBreakdown: {
@@ -26,7 +26,7 @@ module.exports = function (app) {
         default: "",
       },
       condition: { type: String, enum: ["GOOD", "BAD"] },
-      machineId: { type: Schema.Types.ObjectId, ref: "machineMaster" },
+      machineId: { type: Schema.Types.ObjectId, ref: "machine_master" },
       technicianId: { type: Schema.Types.ObjectId, ref: "users" },
 
       createdBy: { type: Schema.Types.ObjectId, ref: "users", required: true },

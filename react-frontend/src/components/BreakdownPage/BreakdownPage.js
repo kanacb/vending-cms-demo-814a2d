@@ -38,6 +38,10 @@ const BreakdownPage = (props) => {
                 service: "users",
                 select: ["name"],
               },{
+                        path : "opsCentreId",
+                        service : "opsCentre",
+                        select:["name"]
+                    },{
                         path : "locationId",
                         service : "locationMaster",
                         select:["name"]

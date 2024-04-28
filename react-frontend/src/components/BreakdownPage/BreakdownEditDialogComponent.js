@@ -7,6 +7,7 @@ import moment from "moment";
 import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
 import { Calendar } from 'primereact/calendar';
+import { InputTextarea } from 'primereact/inputtextarea';
 
 
 
@@ -27,6 +28,7 @@ const BreakdownCreateDialogComponent = (props) => {
     const [_entity, set_entity] = useState({});
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const [opsCentreId, setOpsCentreId] = useState([])
     const [locationId, setLocationId] = useState([])
     const [machineId, setMachineId] = useState([])
     const [technicianId, setTechnicianId] = useState([])
@@ -36,6 +38,19 @@ const BreakdownCreateDialogComponent = (props) => {
     }, [props.entity, props.show]);
 
     useEffect(() => {
+                    //on mount opsCentre 
+                    client
+                        .service("opsCentre")
+                        .find({ query: { $limit: 10000, $sort: { createdAt: -1 } } })
+                        .then((res) => {
+                            setOpsCentreId(res.data.map((e) => ({ name: e['name'], value: e._id })));
+                        })
+                        .catch((error) => {
+                            console.log({ error });
+                            props.alert({ title: "OpsCentre", type: "error", message: error.message || "Failed get opsCentre" });
+                        });
+                }, []);
+   useEffect(() => {
                     //on mount locationMaster 
                     client
                         .service("locationMaster")
@@ -77,7 +92,7 @@ const BreakdownCreateDialogComponent = (props) => {
 
     const onSave = async () => {
         let _data = {
-            opsCentreId: _entity?.opsCentreId,
+            opsCentreId: _entity?.opsCentreId?._id,
             locationId: _entity?.locationId?._id,
             visitDate: _entity?.visitDate,
             reportDate: _entity?.reportDate,
@@ -95,6 +110,12 @@ const BreakdownCreateDialogComponent = (props) => {
             .service("breakdown")
             .find({ query: { $limit: 10000 ,  _id :  { $in :[_entity._id]}, $populate : [
                 
+                {
+                    path : "opsCentreId",
+                    service : "opsCentre",
+                    select:["name"]
+                }
+            ,
                 {
                     path : "locationId",
                     service : "locationMaster",
@@ -139,6 +160,7 @@ const BreakdownCreateDialogComponent = (props) => {
     };
     // children dropdown options
 
+    const opsCentreIdOptions = opsCentreId.map((elem) => ({ name: elem.name, value: elem.value })).sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric : true, sensitivity: "base"}));
     const locationIdOptions = locationId.map((elem) => ({ name: elem.name, value: elem.value })).sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric : true, sensitivity: "base"}));
     const machineIdOptions = machineId.map((elem) => ({ name: elem.name, value: elem.value })).sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric : true, sensitivity: "base"}));
     const technicianIdOptions = technicianId.map((elem) => ({ name: elem.name, value: elem.value })).sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric : true, sensitivity: "base"}));
@@ -147,11 +169,9 @@ const BreakdownCreateDialogComponent = (props) => {
         <Dialog header="Edit Breakdown" visible={props.show} closable={false} onHide={props.onHide} modal style={{ width: "40vw" }} className="min-w-max" footer={renderFooter()} resizable={false}>
             <div className="grid p-fluid overflow-y-auto"
             style={{ maxWidth: "55vw" }} role="breakdown-edit-dialog-component">
-                <div className="col-12 md:col-6 field mt-5">
-                <span className="p-float-label">
-                    <InputText id="opsCentreId" type="text" value={_entity?.opsCentreId} onChange={(e) => setValByKey("opsCentreId", e.target.value)}  />
-                    <label htmlFor="opsCentreId">Ops Centre Id:</label>
-                </span>
+                <div>
+                <p className="m-0">opsCentreId:</p>
+                <Dropdown id="opsCentreId" value={_entity?.opsCentreId?._id} options={opsCentreIdOptions} optionLabel="name" optionValue="value" onChange={(e) => setValByKey("opsCentreId", {_id : e.value})} />
             </div>
             <div>
                 <p className="m-0">locationId:</p>
@@ -160,33 +180,33 @@ const BreakdownCreateDialogComponent = (props) => {
             <div className="col-12 md:col-6 field mt-5">
                 <span className="p-float-label">
                     <Calendar id="visitDate" dateFormat="dd/mm/yy" placeholder={"dd/mm/yy"} value={new Date(_entity?.visitDate)} onChange={ (e) => setValByKey("visitDate", new Date(e.target.value))} showIcon showButtonBar ></Calendar>
-                    <label htmlFor="visitDate">visitDate:</label>
+                    <label htmlFor="visitDate">Visited Date:</label>
                 </span>
             </div>
             <div className="col-12 md:col-6 field mt-5">
                 <span className="p-float-label">
                     <Calendar id="reportDate" dateFormat="dd/mm/yy" placeholder={"dd/mm/yy"} value={new Date(_entity?.reportDate)} onChange={ (e) => setValByKey("reportDate", new Date(e.target.value))} showIcon showButtonBar ></Calendar>
-                    <label htmlFor="reportDate">reportDate:</label>
+                    <label htmlFor="reportDate">Reported Date:</label>
                 </span>
             </div>
             <div className="col-12 md:col-6 field mt-5">
                 <span className="p-float-label">
-                    <InputText id="reasonForBreakdown" type="text" value={_entity?.reasonForBreakdown} onChange={(e) => setValByKey("reasonForBreakdown", e.target.value)}  />
+                    <InputTextarea id="reasonForBreakdown" rows={5} cols={30} value={_entity?.reasonForBreakdown} onChange={ (e) => setValByKey("reasonForBreakdown", e.target.value)} autoResize />
                     <label htmlFor="reasonForBreakdown">Reason For Breakdown:</label>
                 </span>
             </div>
             <div className="col-12 md:col-6 field mt-5">
                 <span className="p-float-label">
-                    <InputText id="technicianRemark" type="text" value={_entity?.technicianRemark} onChange={(e) => setValByKey("technicianRemark", e.target.value)}  />
-                    <label htmlFor="technicianRemark">Technician Remark:</label>
+                    <InputTextarea id="technicianRemark" rows={5} cols={30} value={_entity?.technicianRemark} onChange={ (e) => setValByKey("technicianRemark", e.target.value)} autoResize />
+                    <label htmlFor="technicianRemark">Technician Remarks:</label>
                 </span>
             </div>
             <div>
-                <p className="m-0">machineId:</p>
+                <p className="m-0">Machine:</p>
                 <Dropdown id="machineId" value={_entity?.machineId?._id} options={machineIdOptions} optionLabel="name" optionValue="value" onChange={(e) => setValByKey("machineId", {_id : e.value})} />
             </div>
             <div>
-                <p className="m-0">technicianId:</p>
+                <p className="m-0">Technician:</p>
                 <Dropdown id="technicianId" value={_entity?.technicianId?._id} options={technicianIdOptions} optionLabel="name" optionValue="value" onChange={(e) => setValByKey("technicianId", {_id : e.value})} />
             </div>
                 <div className="col-12 md:col-6 field mt-5"><p className="m-0">createdAt:{" " + moment(_entity?.createdAt).fromNow()}</p></div>

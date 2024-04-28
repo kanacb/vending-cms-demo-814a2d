@@ -117,9 +117,11 @@ const CbStage1AgreeCreateDialogComponent = (props) => {
         <Dialog header="Create CB Stage 1 Agree" visible={props.show} closable={false} onHide={props.onHide} modal style={{ width: "40vw" }} className="min-w-max" footer={renderFooter()} resizable={false}>
             <div className="grid p-fluid overflow-y-auto"
             style={{ maxWidth: "55vw" }} role="cbStage1Agree-create-dialog-component">
-            <div>
-                <p className="m-0">Ref:</p>
-                <Dropdown id="Ref" value={_entity?.Ref} optionLabel="name" optionValue="value" options={RefOptions} onChange={(e) => setValByKey("Ref", {_id : e.value})} />
+            <div className="col-12 md:col-6 field mt-5">
+                <span className="p-float-label">
+                    <Dropdown id="Ref" value={_entity?.Ref} optionLabel="name" optionValue="value" options={RefOptions} onChange={(e) => setValByKey("Ref", {_id : e.value})} />
+                    <label htmlFor="Ref">Ref:</label>
+                </span>
             </div>
             <div className="col-12 md:col-6 field mt-5">
                 <span className="p-float-label">
