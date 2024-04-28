@@ -1,5 +1,4 @@
 
-
 export default (results) => {
     const today = new Date();
         let yesterday = today.setDate(today.getDate() - 1);

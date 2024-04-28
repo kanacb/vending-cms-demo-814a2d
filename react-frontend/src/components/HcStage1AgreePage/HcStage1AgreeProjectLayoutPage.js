@@ -17,7 +17,7 @@ const HcStage1AgreeProjectLayoutPage = (props) => {
           >
             <div className="flex align-items-center text-white">
               <p className="text-2xl text-white">
-                HC Stage 1 Agree {" > " + props.selectedHCMasterForm?.RefNo}
+              HC Stage 1 Agree  {" > " + props.selectedHCMasterForm?.RefNo} 
               </p>
             </div>
           </div>

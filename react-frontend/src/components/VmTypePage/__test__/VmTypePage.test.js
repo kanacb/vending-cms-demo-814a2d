@@ -9,14 +9,14 @@ import { Provider } from "react-redux";
 import * as models from "../../../models";
 
 test("renders vmType page", async () => {
-  const store = init({ models });
-  render(
-    <Provider store={store}>
-      <MemoryRouter>
-        <VmTypePage />
-      </MemoryRouter>
-    </Provider>,
-  );
-  expect(screen.getByRole("vmType-datatable")).toBeInTheDocument();
-  expect(screen.getByRole("vmType-add-button")).toBeInTheDocument();
+    const store = init({ models });
+    render(
+        <Provider store={store}>
+            <MemoryRouter>
+                <VmTypePage />
+            </MemoryRouter>
+        </Provider>
+    );
+    expect(screen.getByRole("vmType-datatable")).toBeInTheDocument();
+    expect(screen.getByRole("vmType-add-button")).toBeInTheDocument();
 });

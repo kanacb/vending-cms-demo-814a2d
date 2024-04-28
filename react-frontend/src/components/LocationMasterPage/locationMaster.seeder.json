@@ -1,9 +1,9 @@
 [
-  {
-    "name": "Maglotech",
-    "code": "41ESA1068",
-    "type": "SUPPORT",
-    "area": "Bkt Raja",
-    "DESCRIPTION": "SOMETHING"
-  }
+    {
+        "name": "Maglotech",
+        "code": "41ESA1068",
+        "type": "SUPPORT",
+        "area": "Bkt Raja",
+        "DESCRIPTION": "SOMETHING"
+    }
 ]

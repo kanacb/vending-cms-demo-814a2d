@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
 import { AppMenu } from "../Layouts/AppMenu";
 import { Button } from "primereact/button";
+import { classNames } from "primereact/utils";
+import { Ripple } from "primereact/ripple";
 
 const leftMenuStyle = {
   open: { transform: "translateX(0)" },
@@ -21,6 +23,8 @@ const HCMasterFormLayout = (props) => {
   const urlParams = useParams();
   const copyTooltipRef = useRef();
   const location = useLocation();
+  const [activeTab, setActiveTab] = useState(null);
+  const [activeTab2, setActiveTab2] = useState(null);
 
   useEffect(() => {
     // Handler to call on window resize
@@ -66,7 +70,7 @@ const HCMasterFormLayout = (props) => {
           to: `/hCMasterForm/${urlParams.singleHCMasterFormId}/single`,
         },
         {
-          label: "Hot Cold Stage 2",
+          label: "Hot Cold Stage 1",
           icon: "pi pi-fw pi-cog",
           to: `/hCMasterForm/${urlParams.singleHCMasterFormId}/hcStage1`,
         },
@@ -99,16 +103,22 @@ const HCMasterFormLayout = (props) => {
     else
       element.className = element.className.replace(
         new RegExp("(^|\b)" + className.split(" ").join("|") + "(\b|$)", "gi"),
-        " ",
+        " "
       );
   };
 
   return (
-    <div className="">
+    <>
       <div
         className={`layout-sidebar my-custom-scroll-bar my-custom-scroll-bar-margin overflow-x-hidden`}
         style={props.menuOpen ? leftMenuStyle.open : leftMenuStyle.close}
       >
+        <AppMenu
+          model={menu}
+          onMenuItemClick={onMenuItemClick}
+          layoutColorMode={"light"}
+        />
+
         <div
           className="absolute"
           style={{ right: "-1.5rem", top: "30%", bottom: "50%" }}
@@ -119,12 +129,6 @@ const HCMasterFormLayout = (props) => {
             onClick={() => props.setMenuOpen(!props.menuOpen)}
           />
         </div>
-
-        <AppMenu
-          model={menu}
-          onMenuItemClick={onMenuItemClick}
-          layoutColorMode={"light"}
-        />
       </div>
 
       <div
@@ -135,7 +139,7 @@ const HCMasterFormLayout = (props) => {
           {props.children}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

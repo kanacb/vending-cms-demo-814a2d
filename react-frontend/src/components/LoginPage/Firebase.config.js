@@ -7,14 +7,15 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 
+// CLEINT USER TO SET Initialize Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyDhk6vt5wexMpTeXG72O6IYPM8Zam4Lf7Y",
-  authDomain: "authentication-3d4ce.firebaseapp.com",
-  projectId: "authentication-3d4ce",
-  storageBucket: "authentication-3d4ce.appspot.com",
-  messagingSenderId: "730858604801",
-  appId: "1:730858604801:web:d4f97a547cea889871b300",
-  measurementId: "G-VPW2CKV2PW",
+  apiKey: "AIzaSyDKXFpD_1ZMGE1Co3H-HISmbfUioZgzXC4",
+  authDomain: "codebridgestg.firebaseapp.com",
+  projectId: "codebridgestg",
+  storageBucket: "codebridgestg.appspot.com",
+  messagingSenderId: "661868911207",
+  appId: "1:661868911207:web:02eedbe50e7e45a45552c2",
+  measurementId: "G-PVHG79E2R9",
 };
 
 // Initialize Firebase

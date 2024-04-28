@@ -9,15 +9,13 @@ import { Provider } from "react-redux";
 import * as models from "../../../models";
 
 test("renders machineMaster edit dialog", async () => {
-  const store = init({ models });
-  render(
-    <Provider store={store}>
-      <MemoryRouter>
-        <MachineMasterEditDialogComponent show={true} />
-      </MemoryRouter>
-    </Provider>,
-  );
-  expect(
-    screen.getByRole("machineMaster-edit-dialog-component"),
-  ).toBeInTheDocument();
+    const store = init({ models });
+    render(
+        <Provider store={store}>
+            <MemoryRouter>
+                <MachineMasterEditDialogComponent show={true} />
+            </MemoryRouter>
+        </Provider>
+    );
+    expect(screen.getByRole("machineMaster-edit-dialog-component")).toBeInTheDocument();
 });

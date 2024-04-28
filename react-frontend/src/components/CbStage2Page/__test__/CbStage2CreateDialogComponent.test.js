@@ -9,15 +9,13 @@ import { Provider } from "react-redux";
 import * as models from "../../../models";
 
 test("renders cbStage2 create dialog", async () => {
-  const store = init({ models });
-  render(
-    <Provider store={store}>
-      <MemoryRouter>
-        <CbStage2CreateDialogComponent show={true} />
-      </MemoryRouter>
-    </Provider>,
-  );
-  expect(
-    screen.getByRole("cbStage2-create-dialog-component"),
-  ).toBeInTheDocument();
+    const store = init({ models });
+    render(
+        <Provider store={store}>
+            <MemoryRouter>
+                <CbStage2CreateDialogComponent show={true} />
+            </MemoryRouter>
+        </Provider>
+    );
+    expect(screen.getByRole("cbStage2-create-dialog-component")).toBeInTheDocument();
 });

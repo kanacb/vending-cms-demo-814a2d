@@ -17,7 +17,7 @@ const CbStage2ProjectLayoutPage = (props) => {
           >
             <div className="flex align-items-center text-white">
               <p className="text-2xl text-white">
-                Can Bottle Stage 2 {" > " + props.selectedCBMasterForm?.RefNo}
+              Can Bottle Stage 2  {" > " + props.selectedCBMasterForm?.RefNo} 
               </p>
             </div>
           </div>

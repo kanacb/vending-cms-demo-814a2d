@@ -87,7 +87,7 @@ const ProjectLayout = (props) => {
   };
 
   return (
-    <div className="">
+    <div className="surface-0">
       <div
         className={`layout-sidebar my-custom-scroll-bar my-custom-scroll-bar-margin overflow-x-hidden`}
         style={props.menuOpen ? leftMenuStyle.open : leftMenuStyle.close}

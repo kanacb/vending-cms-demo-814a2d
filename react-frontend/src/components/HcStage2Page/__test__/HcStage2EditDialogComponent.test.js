@@ -9,15 +9,13 @@ import { Provider } from "react-redux";
 import * as models from "../../../models";
 
 test("renders hcStage2 edit dialog", async () => {
-  const store = init({ models });
-  render(
-    <Provider store={store}>
-      <MemoryRouter>
-        <HcStage2EditDialogComponent show={true} />
-      </MemoryRouter>
-    </Provider>,
-  );
-  expect(
-    screen.getByRole("hcStage2-edit-dialog-component"),
-  ).toBeInTheDocument();
+    const store = init({ models });
+    render(
+        <Provider store={store}>
+            <MemoryRouter>
+                <HcStage2EditDialogComponent show={true} />
+            </MemoryRouter>
+        </Provider>
+    );
+    expect(screen.getByRole("hcStage2-edit-dialog-component")).toBeInTheDocument();
 });

@@ -62,68 +62,73 @@ const SingleMachineMasterPage = (props) => {
         <p>machineMaster/{urlParams.singleMachineMasterId}</p>
         {/* ~cb-project-dashboard~ */}
       </div>
-      <div className="grid col-10">
-        <div className="card w-full">
-          <label className="text-sm text-primary">Ownership</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.ownership}</p>
+      <div className="card w-full">
+        <div className="grid ">
+          <div className="col-12 md:col-6 lg:col-3">
+            <label className="text-sm text-primary">Ownership</label>
+            <p className="">{_entity?.ownership}</p>
           </div>
-          <label className="text-sm text-primary">Vmcode</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.vmcode}</p>
+          <div className="col-12 md:col-6 lg:col-3">
+            <label className="text-sm text-primary">Vmcode</label>
+            <p className="">{_entity?.vmcode}</p>
           </div>
-          <label className="text-sm text-primary">Zone</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.zone}</p>
+          <div className="col-12 md:col-6 lg:col-3">
+            <label className="text-sm text-primary">Zone</label>
+            <p className="">{_entity?.zone}</p>
           </div>
-          <label className="text-sm text-primary">Location Code</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.locationCode}</p>
+          <div className="col-12 md:col-6 lg:col-3">
+            <label className="text-sm text-primary">Location Code</label>
+            <p className="">{_entity?.locationCode}</p>
           </div>
-          <label className="text-sm text-primary">Location Desc</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.locationDesc}</p>
+          <div className="col-12 md:col-6 lg:col-3">
+            <label className="text-sm text-primary">Location Desc</label>
+            <p className="">{_entity?.locationDesc}</p>
           </div>
-          <label className="text-sm text-primary">Model No</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.modelNo}</p>
+          <div className="col-12 md:col-6 lg:col-3">
+            <label className="text-sm text-primary">Model No</label>
+            <p className="">{_entity?.modelNo}</p>
           </div>
-          <label className="text-sm text-primary">Serial Number</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.serialNumber}</p>
+          <div className="col-12 md:col-6 lg:col-3">
+            <label className="text-sm text-primary">Serial Number</label>
+            <p className="">{_entity?.serialNumber}</p>
           </div>
-          <label className="text-sm text-primary">Vm Id</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.vmId}</p>
+          <div className="col-12 md:col-6 lg:col-3">
+            <label className="text-sm text-primary">Vm Id</label>
+            <p className="">{_entity?.vmId}</p>
           </div>
-          <label className="text-sm text-primary">purchaseDate</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.purchaseDate}</p>
+          <div className="col-12 md:col-6 lg:col-3">
+            <label className="text-sm text-primary">purchaseDate</label>
+            <p className="">{moment(_entity?.purchaseDate).fromNow()}</p>
           </div>
-          <label className="text-sm text-primary">commissionDate</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.commissionDate}</p>
+          <div className="col-12 md:col-6 lg:col-3">
+            <label className="text-sm text-primary">commissionDate</label>
+            <p className="">{moment(_entity?.commissionDate).fromNow()}</p>
           </div>
-          <label className="text-sm text-primary">Description</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.description}</p>
+          <div className="col-12 md:col-6 lg:col-3">
+            <label className="text-sm text-primary">Description</label>
+            <p className="">{_entity?.description}</p>
           </div>
 
-          <label className="text-sm text-primary">created</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{moment(_entity?.createdAt).fromNow()}</p>
-          </div>
-          <label className="text-sm text-primary">updated</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{moment(_entity?.updatedAt).fromNow()}</p>
-          </div>
-          <label className="text-sm text-primary">createdBy</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.createdBy?.name}</p>
-          </div>
-          <label className="text-sm text-primary">lastUpdatedBy</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.updatedBy?.name}</p>
+          <div className="grid">
+            <div className="col-12 md:col-6 lg:col-3">
+              <label className="text-sm text-primary">created</label>
+              <p className="">{moment(_entity?.createdAt).fromNow()}</p>
+            </div>
+
+            <div className="col-12 md:col-6 lg:col-3">
+              <label className="text-sm text-primary">updated</label>
+              <p className="">{moment(_entity?.updatedAt).fromNow()}</p>
+            </div>
+
+            <div className="col-12 md:col-6 lg:col-3">
+              <label className="text-sm text-primary">createdBy</label>
+              <p className="">{_entity?.createdBy?.name}</p>
+            </div>
+
+            <div className="col-12 md:col-6 lg:col-3">
+              <label className="text-sm text-primary">lastUpdatedBy</label>
+              <p className="">{_entity?.updatedBy?.name}</p>
+            </div>
           </div>
         </div>
       </div>

@@ -4,158 +4,116 @@ import { connect } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import client from "../../services/restClient";
 import moment from "moment";
-import { InputText } from "primereact/inputtext";
+import { InputText } from 'primereact/inputtext';
 
 const SingleCbStage2AgreePage = (props) => {
-  const navigate = useNavigate();
-  const urlParams = useParams();
-  const [_entity, set_entity] = useState();
+    const navigate = useNavigate();
+    const urlParams = useParams();
+    const [_entity, set_entity] = useState();
 
-  const [Ref, setRef] = useState([]);
+    const [Ref, setRef] = useState([]);
 
-  useEffect(() => {
-    //on mount
-    client
-      .service("cbStage2Agree")
-      .get(urlParams.singleCbStage2AgreeId, {
-        query: {
-          $populate: [
-            {
-              path: "createdBy",
-              service: "users",
-              select: ["name"],
-            },
-            {
-              path: "updatedBy",
-              service: "users",
-              select: ["name"],
-            },
-            "Ref",
-          ],
-        },
-      })
-      .then((res) => {
-        set_entity(res || {});
-        const Ref = Array.isArray(res.Ref)
-          ? res.Ref.map((elem) => ({ _id: elem._id, RefNo: elem.RefNo }))
-          : res.Ref
-            ? [{ _id: res.Ref._id, RefNo: res.Ref.RefNo }]
-            : [];
+    useEffect(() => {
+        //on mount
+        client
+            .service("cbStage2Agree")
+            .get(urlParams.singleCbStage2AgreeId, { query: { $populate: [            {
+                path: "createdBy",
+                service: "users",
+                select: ["name"],
+              },{
+                path: "updatedBy",
+                service: "users",
+                select: ["name"],
+              },"Ref"] }})
+            .then((res) => {
+                set_entity(res || {});
+                const Ref = Array.isArray(res.Ref)
+            ? res.Ref.map((elem) => ({ _id: elem._id, RefNo: elem.RefNo }))
+            : res.Ref
+                ? [{ _id: res.Ref._id, RefNo: res.Ref.RefNo }]
+                : [];
         setRef(Ref);
-      })
-      .catch((error) => {
-        console.log({ error });
-        props.alert({
-          title: "CbStage2Agree",
-          type: "error",
-          message: error.message || "Failed get cbStage2Agree",
-        });
-      });
-  }, [props, urlParams.singleCbStage2AgreeId]);
+            })
+            .catch((error) => {
+                console.log({ error });
+                props.alert({ title: "CbStage2Agree", type: "error", message: error.message || "Failed get cbStage2Agree" });
+            });
+    }, [props,urlParams.singleCbStage2AgreeId]);
 
-  const goBack = () => {
-    navigate(-1, { replace: true });
-  };
 
-  return (
-    <div className="col-12 flex flex-column align-items-center">
-      <div className="col-10">
-        <div className="flex align-items-center justify-content-start">
-          <Button
-            className="p-button-text"
-            icon="pi pi-chevron-left"
-            onClick={() => goBack()}
-          />
-          <h3 className="m-0">CbStage2Agree</h3>
-        </div>
-        <p>cbStage2Agree/{urlParams.singleCbStage2AgreeId}</p>
-        {/* ~cb-project-dashboard~ */}
-      </div>
-      <div className="grid col-10">
-        <div className="card w-full">
-          <label className="text-sm text-primary">Ref</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.Ref?.RefNo}</p>
-          </div>
-          <label className="text-sm text-primary">TechName</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.TechName}</p>
-          </div>
-          <label className="text-sm text-primary">TechSign</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.TechSign}</p>
-          </div>
-          <label className="text-sm text-primary">TechDate</label>
-          <div className="ml-3">{moment(_entity?.TechDate).fromNow()}</div>
-          <label className="text-sm text-primary">TechTrade</label>
-          <div className="ml-3">{moment(_entity?.TechTrade).fromNow()}</div>
-          <label className="text-sm text-primary">SvName</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.SvName}</p>
-          </div>
-          <label className="text-sm text-primary">SvSign</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.SvSign}</p>
-          </div>
-          <label className="text-sm text-primary">SvDate</label>
-          <div className="ml-3">{moment(_entity?.SvDate).fromNow()}</div>
-          <label className="text-sm text-primary">SvTrade</label>
-          <div className="ml-3">{moment(_entity?.SvTrade).fromNow()}</div>
-          <label className="text-sm text-primary">MngrName</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.MngrName}</p>
-          </div>
-          <label className="text-sm text-primary">MngrSign</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.MngrSign}</p>
-          </div>
-          <label className="text-sm text-primary">MngrDate</label>
-          <div className="ml-3">{moment(_entity?.MngrDate).fromNow()}</div>
-          <label className="text-sm text-primary">MngrTrade</label>
-          <div className="ml-3">{moment(_entity?.MngrTrade).fromNow()}</div>
-          <label className="text-sm text-primary">Remarks</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.Remarks}</p>
-          </div>
-          <label className="text-sm">Ref</label>
-          <p>
-            {Ref.map((elem) => (
-              <Link key={elem._id} to={`/cBMasterForm/${elem._id}`}>
-                <div className="card">
-                  <p>{elem.RefNo}</p>
+    const goBack = () => {
+        navigate(-1, { replace: true });
+    };
+
+    return (
+        <div className="col-12 flex flex-column align-items-center">
+            <div className="col-10">
+                <div className="flex align-items-center justify-content-start">
+                    <Button className="p-button-text" icon="pi pi-chevron-left" onClick={() => goBack()} />
+                    <h3 className="m-0">CbStage2Agree</h3>
                 </div>
-              </Link>
-            ))}
-          </p>
-          <label className="text-sm text-primary">created</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{moment(_entity?.createdAt).fromNow()}</p>
-          </div>
-          <label className="text-sm text-primary">updated</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{moment(_entity?.updatedAt).fromNow()}</p>
-          </div>
-          <label className="text-sm text-primary">createdBy</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.createdBy?.name}</p>
-          </div>
-          <label className="text-sm text-primary">lastUpdatedBy</label>
-          <div className="ml-3">
-            <p className="m-0 ml-3">{_entity?.updatedBy?.name}</p>
-          </div>
+                <p>cbStage2Agree/{urlParams.singleCbStage2AgreeId}</p>
+                {/* ~cb-project-dashboard~ */}
+            </div>
+            <div className="card w-full">
+                <div className="grid ">
+
+            <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Ref</label><p className="" >{_entity?.Ref?.RefNo}</p></div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">TechName</label><p className="" >{_entity?.TechName}</p></div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">TechSign</label><p className="" >{_entity?.TechSign}</p></div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">TechDate</label>{moment(_entity?.TechDate).fromNow()}</div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">TechTrade</label>{moment(_entity?.TechTrade).fromNow()}</div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">SvName</label><p className="" >{_entity?.SvName}</p></div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">SvSign</label><p className="" >{_entity?.SvSign}</p></div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">SvDate</label>{moment(_entity?.SvDate).fromNow()}</div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">SvTrade</label>{moment(_entity?.SvTrade).fromNow()}</div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">MngrName</label><p className="" >{_entity?.MngrName}</p></div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">MngrSign</label><p className="" >{_entity?.MngrSign}</p></div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">MngrDate</label>{moment(_entity?.MngrDate).fromNow()}</div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">MngrTrade</label>{moment(_entity?.MngrTrade).fromNow()}</div>
+                    <div className="col-12 md:col-6 lg:col-3"><label className="text-sm text-primary">Remarks</label><p className="" >{_entity?.Remarks}</p></div>
+            <label className="text-sm">Ref</label>
+            <p>{Ref.map((elem) => (
+                    <Link key={elem._id} to={`/cBMasterForm/${elem._id}`}>
+                        <div className="card">
+                            <p>{elem.RefNo}</p>
+                        </div>
+                    </Link>
+                ))}</p>
+                    
+                    <div className="col-12 md:col-6 lg:col-3">
+                        <label className="text-sm text-primary">created</label>
+                        <p className="">{moment(_entity?.createdAt).fromNow()}</p>
+                    </div>
+                    
+                    <div className="col-12 md:col-6 lg:col-3">
+                        <label className="text-sm text-primary">updated</label>
+                        <p className="">{moment(_entity?.updatedAt).fromNow()}</p>
+                    </div>
+                    
+                    <div className="col-12 md:col-6 lg:col-3">
+                        <label className="text-sm text-primary">createdBy</label>
+                        <p className="">{_entity?.createdBy?.name}</p>
+                    </div>
+                    
+                    <div className="col-12 md:col-6 lg:col-3">
+                        <label className="text-sm text-primary">lastUpdatedBy</label>
+                        <p className="">{_entity?.updatedBy?.name}</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 const mapState = (state) => {
-  return {};
+    return {};
 };
 
 const mapDispatch = (dispatch) => ({
-  alert: (data) => dispatch.toast.alert(data),
-  //
+    alert: (data) => dispatch.toast.alert(data),
+    //
 });
 
 export default connect(mapState, mapDispatch)(SingleCbStage2AgreePage);

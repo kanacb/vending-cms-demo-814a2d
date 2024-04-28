@@ -21,11 +21,12 @@ import "./customStyles.css";
 
 const App = () => {
   const location = useLocation();
-  const sitePatterns = ["/login$", "/admin$"];
+  const sitePatterns = ["/login$","/signup$"];
   const masterPattern = new RegExp(sitePatterns.join("|"));
+  const showSideMenuButton = false;
   return (
     <Provider store={store}>
-      {masterPattern.test(location.pathname) ? null : <AppTopbar />}
+      {masterPattern.test(location.pathname) ? null : <AppTopbar showSideMenuButton={showSideMenuButton} />}
       <MainLayout>
         <MyRouter />
         <AppFooter />

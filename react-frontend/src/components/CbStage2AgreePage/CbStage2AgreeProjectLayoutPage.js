@@ -17,7 +17,7 @@ const CbStage2AgreeProjectLayoutPage = (props) => {
           >
             <div className="flex align-items-center text-white">
               <p className="text-2xl text-white">
-                CB Stage 2 Agree {" > " + props.selectedCBMasterForm?.RefNo}
+              CB Stage 2 Agree  {" > " + props.selectedCBMasterForm?.RefNo} 
               </p>
             </div>
           </div>
