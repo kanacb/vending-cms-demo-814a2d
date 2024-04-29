@@ -14,26 +14,12 @@ const Dashboard = (props) => {
             {/* Links to services */}
 
             <div className="col-12 lg:col-6 xl:col-4">
-              <Link to="/hCMasterForm">
+              <Link to="/todo">
                 <div
                   className="card mb-0 flex flex-column align-items-center justify-content-center hover zoom"
                   style={{ height: "10rem" }}
                 >
-                  <div className="text-900 font-medium text-lg">
-                    Operations
-                  </div>
-                </div>
-              </Link>
-            </div>
-            <div className="col-12 lg:col-6 xl:col-4">
-              <Link to="/cBMasterForm">
-                <div
-                  className="card mb-0 flex flex-column align-items-center justify-content-center hover zoom"
-                  style={{ height: "10rem" }}
-                >
-                  <div className="text-900 font-medium text-lg">
-                    Reports
-                  </div>
+                  <div className="text-900 font-medium text-lg">To Do</div>
                 </div>
               </Link>
             </div>
@@ -47,16 +33,7 @@ const Dashboard = (props) => {
                 </div>
               </Link>
             </div>
-            <div className="col-12 lg:col-6 xl:col-4">
-              <Link to="/breakdown">
-                <div
-                  className="card mb-0 flex flex-column align-items-center justify-content-center hover zoom"
-                  style={{ height: "10rem" }}
-                >
-                  <div className="text-900 font-medium text-lg">Breakdown</div>
-                </div>
-              </Link>
-            </div>
+
             {/* ~cb-add-services-card~ */}
           </div>
         </div>

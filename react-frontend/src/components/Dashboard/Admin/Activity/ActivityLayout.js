@@ -9,7 +9,7 @@ const ActivityLayout = (props) => {
     { label: "Add New", icon: "pi pi-fw pi-plus" },
     { label: "Remove", icon: "pi pi-fw pi-minus" },
   ];
-  
+
   return (
     <>
       <div className="col-12 lg:col-6">

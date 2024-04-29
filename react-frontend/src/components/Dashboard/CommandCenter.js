@@ -15,7 +15,7 @@ const CommandMenu = () => {
   const [value3, setValue3] = useState("");
   const [value4, setValue4] = useState("");
   const [value5, setValue5] = useState(
-    "Search raised tickets, HnC, CnB COMBO and more..."
+    "Search raised tickets, HnC, CnB COMBO and more...",
   );
   const [value6, setValue6] = useState("Sign");
 
@@ -106,7 +106,9 @@ const CommandMenu = () => {
                 <i className="pi pi-star text-lg"></i>
               </span>
               <div className="ml-2">
-                <p className="font-semibold text-sm mt-0 mb-1">Recent Tickets</p>
+                <p className="font-semibold text-sm mt-0 mb-1">
+                  Recent Tickets
+                </p>
                 <p className="font-normal text-xs text-white-alpha-80 mt-0 mb-0">
                   Reach your recent tickets
                 </p>

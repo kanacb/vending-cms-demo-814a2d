@@ -10,7 +10,6 @@ import LearnMoreLayout from "./LearnMore/LearnMoreLayout";
 import LineGraphLayout from "./LineGraph/LineGraphLayout";
 
 const DynamicDashboards = () => {
-
   return (
     <>
       <div className="min-h-screen flex relative lg:static surface-0">
@@ -25,7 +24,6 @@ const DynamicDashboards = () => {
               <ActivityLayout />
               <NotificationsLayout />
               <LearnMoreLayout />
-
             </div>
           </div>
         </div>

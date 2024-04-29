@@ -1,14 +1,8 @@
 import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
 
-
 const AlertLayout = (props) => {
-
-  return (
-    <>
-
-    </>
-  );
+  return <></>;
 };
 
 const mapState = (state) => {

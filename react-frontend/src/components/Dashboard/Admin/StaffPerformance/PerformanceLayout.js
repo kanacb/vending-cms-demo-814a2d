@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
-import { InputText } from 'primereact/inputtext';
-import { Button } from 'primereact/button';
-import { Menu } from 'primereact/menu';
-import { Badge } from 'primereact/badge';
-import { StyleClass } from 'primereact/styleclass';
-import { Ripple } from 'primereact/ripple';
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
+import { Menu } from "primereact/menu";
+import { Badge } from "primereact/badge";
+import { StyleClass } from "primereact/styleclass";
+import { Ripple } from "primereact/ripple";
 
 const PerformanceLayout = (props) => {
   return (

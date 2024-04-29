@@ -7,7 +7,7 @@ import LoginPage from "../components/LoginPage/LoginPage";
 import SignUpPage from "../components/LoginPage/SignUpPage";
 import Account from "../components/Account/Account";
 import Dashboard from "../components/Dashboard/Dashboard";
-import WhatToDoPage from "../components/WhatTodo";
+import WhatToDoPage from "../components/Operations/WhatTodo";
 import AdminDashLayout from "../components/Dashboard/Admin/AdminDashLayout";
 
 import UsersPage from "../components/UsersPage/UsersPage";
@@ -52,6 +52,11 @@ import MachineMasterPage from "../components/MachineMasterPage/MachineMasterPage
 import SingleMachineMasterPage from "../components/MachineMasterPage/SingleMachineMasterPage";
 import BreakdownPage from "../components/BreakdownPage/BreakdownPage";
 import SingleBreakdownPage from "../components/BreakdownPage/SingleBreakdownPage";
+import ExternalTickertsPage from "../components/Operations/External/ExternalTicketPage";
+import CompanyPage from "../components/Operations/External/CompanyPage";
+import SourcePage from "../components/Operations/External/SourcePage";
+import InternalTicketPage from "../components/Operations/Internal/InternalTicketPage";
+import SupervisorAssignPage from "../components/Operations/Internal/SupervisorAssignPage";
 // ~cb-add-import~
 
 const MyRouter = () => {
@@ -65,8 +70,14 @@ const MyRouter = () => {
       <Route element={<ProtectedRoute redirectPath={"/login"} />}>
         <Route path="/account" exact element={<Account />} />
         <Route path="/admin" exact element={<AdminDashLayout />} />
-        
         <Route path="/users" exact element={<UsersPage />} />
+        <Route path="/todo" exact element={<WhatToDoPage />} />
+        <Route path="/raise" exact element={<ExternalTickertsPage />} />
+        <Route path="/source" exact element={<SourcePage />} />
+        <Route path="/company" exact element={<CompanyPage />} />
+        <Route path="/internal" exact element={<InternalTicketPage />} />
+        <Route path="/supervisor" exact element={<SupervisorAssignPage />} />
+
         <Route
           path="/users/:singleUsersId"
           exact

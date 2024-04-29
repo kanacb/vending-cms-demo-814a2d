@@ -166,9 +166,7 @@ const AppTopbar = (props) => {
           </div>
         </Link>
 
-        <div className="text-900 text-3xl font-medium ml-5">
-          Atlas Vending
-        </div>
+        <div className="text-900 text-3xl font-medium ml-5">Atlas Vending</div>
 
         {/* <Tag className="mr-2" value="Journey" rounded severity="warning" />
         <Tag className="mr-2" value="Space" rounded severity="help" /> */}

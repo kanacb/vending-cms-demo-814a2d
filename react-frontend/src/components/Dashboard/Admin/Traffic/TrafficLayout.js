@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
-import { Image } from 'primereact/image';
+import { Image } from "primereact/image";
 
 const TrafficLayout = (props) => {
   return (
@@ -15,7 +15,10 @@ const TrafficLayout = (props) => {
           <div className="grid">
             <div className="col-12 md:col-6">
               <div className="text-center border-1 surface-border border-round p-4">
-              <Image  src="/demo/images/machines/hotncold.jpg" width="50"></Image >
+                <Image
+                  src="/demo/images/machines/hotncold.jpg"
+                  width="50"
+                ></Image>
                 <div className="text-900 text-2xl font-700 my-3 font-bold">
                   12.40K
                 </div>
@@ -24,7 +27,10 @@ const TrafficLayout = (props) => {
             </div>
             <div className="col-12 md:col-6 text-center">
               <div className="text-center border-1 surface-border border-round p-4">
-                <Image  src="/demo/images/machines/hotncold.jpg" width="50"></Image >
+                <Image
+                  src="/demo/images/machines/hotncold.jpg"
+                  width="50"
+                ></Image>
                 <div className="text-900 text-2xl font-700 my-3 font-bold">
                   10.20K
                 </div>
@@ -33,7 +39,10 @@ const TrafficLayout = (props) => {
             </div>
             <div className="col-12 md:col-6 text-center">
               <div className="text-center border-1 surface-border border-round p-4">
-              <Image  src="/demo/images/machines/hotncold.jpg" width="50"></Image >
+                <Image
+                  src="/demo/images/machines/hotncold.jpg"
+                  width="50"
+                ></Image>
                 <div className="text-900 text-2xl font-700 my-3 font-bold">
                   5.60K
                 </div>
@@ -42,7 +51,10 @@ const TrafficLayout = (props) => {
             </div>
             <div className="col-12 md:col-6 text-center">
               <div className="text-center border-1 surface-border border-round p-4">
-              <Image  src="/demo/images/machines/hotncold.jpg" width="50"></Image >
+                <Image
+                  src="/demo/images/machines/hotncold.jpg"
+                  width="50"
+                ></Image>
                 <div className="text-900 text-2xl font-700 my-3 font-bold">
                   23.53K
                 </div>
@@ -51,7 +63,10 @@ const TrafficLayout = (props) => {
             </div>
             <div className="col-12 md:col-6 text-center">
               <div className="text-center border-1 surface-border border-round p-4">
-              <Image  src="/demo/images/machines/hotncold.jpg" width="50"></Image >
+                <Image
+                  src="/demo/images/machines/hotncold.jpg"
+                  width="50"
+                ></Image>
                 <div className="text-900 text-2xl font-700 my-3 font-bold">
                   16.70K
                 </div>
@@ -60,7 +75,10 @@ const TrafficLayout = (props) => {
             </div>
             <div className="col-12 md:col-6 text-center">
               <div className="text-center border-1 surface-border border-round p-4">
-              <Image  src="/demo/images/machines/hotncold.jpg" width="50"></Image >
+                <Image
+                  src="/demo/images/machines/hotncold.jpg"
+                  width="50"
+                ></Image>
                 <div className="text-900 text-2xl font-700 my-3 font-bold">
                   16.50K
                 </div>

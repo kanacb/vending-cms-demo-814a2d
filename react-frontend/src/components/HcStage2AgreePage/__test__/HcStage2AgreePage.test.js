@@ -9,14 +9,14 @@ import { Provider } from "react-redux";
 import * as models from "../../../models";
 
 test("renders hcStage2Agree page", async () => {
-    const store = init({ models });
-    render(
-        <Provider store={store}>
-            <MemoryRouter>
-                <HcStage2AgreePage />
-            </MemoryRouter>
-        </Provider>
-    );
-    expect(screen.getByRole("hcStage2Agree-datatable")).toBeInTheDocument();
-    expect(screen.getByRole("hcStage2Agree-add-button")).toBeInTheDocument();
+  const store = init({ models });
+  render(
+    <Provider store={store}>
+      <MemoryRouter>
+        <HcStage2AgreePage />
+      </MemoryRouter>
+    </Provider>,
+  );
+  expect(screen.getByRole("hcStage2Agree-datatable")).toBeInTheDocument();
+  expect(screen.getByRole("hcStage2Agree-add-button")).toBeInTheDocument();
 });

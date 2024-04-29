@@ -17,7 +17,7 @@ const CBMasterFormProjectLayoutPage = (props) => {
           >
             <div className="flex align-items-center text-white">
               <p className="text-2xl text-white">
-              Can Bottle Master Form {" > " + props.selectedCBMasterForm?._id} 
+                Can Bottle Master Form {" > " + props.selectedCBMasterForm?._id}
               </p>
             </div>
           </div>

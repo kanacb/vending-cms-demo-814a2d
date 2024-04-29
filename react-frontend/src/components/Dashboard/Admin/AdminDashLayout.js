@@ -30,7 +30,7 @@ const AdminDashLayout = (props) => {
   useEffect(() => {
     const lastActiveTab =
       Number(localStorage.getItem("currentActiveTab1")) || 0;
-      
+
     const lastActiveTab2 =
       Number(localStorage.getItem("currentActiveTab2")) || null;
     console.log(activeTab, activeTab2, lastActiveTab);
@@ -42,7 +42,6 @@ const AdminDashLayout = (props) => {
     if (!activeTab2) {
       setActiveTab2(lastActiveTab2);
     } else if (activeTab !== lastActiveTab) setActiveTab2(null);
-
   }, []);
 
   const setCurrentActiveTab1 = (tab1) => {
@@ -53,12 +52,14 @@ const AdminDashLayout = (props) => {
   const setCurrentActiveTab2 = (tab2) => {
     localStorage.setItem("currentActiveTab2", tab2);
     setActiveTab2(tab2);
-
   };
 
   return (
     <>
-      <div className="flex relative lg:static surface-0" style={{minHeight : '90vh'}}>
+      <div
+        className="flex relative lg:static surface-0"
+        style={{ minHeight: "90vh" }}
+      >
         <div
           id="app-sidebar"
           className="h-full lg:h-auto hidden lg:block flex-shrink-0 absolute lg:static left-0 top-0 z-1 border-right-1 surface-border w-full md:w-auto"
@@ -84,9 +85,12 @@ const AdminDashLayout = (props) => {
                     <a
                       className={classNames(
                         "p-ripple flex align-items-center cursor-pointer py-3 pl-0 pr-2 justify-content-center hover:bg-yellow-600 text-yellow-100 hover:text-yellow-50 transition-duration-150 transition-colors",
-                        { "bg-white": activeTab === 0 }
+                        { "bg-white": activeTab === 0 },
                       )}
-                      onClick={() => {setCurrentActiveTab1(0); setCurrentActiveTab2(null)}}
+                      onClick={() => {
+                        setCurrentActiveTab1(0);
+                        setCurrentActiveTab2(null);
+                      }}
                       style={{
                         borderTopLeftRadius: "30px",
                         borderBottomLeftRadius: "30px",
@@ -103,9 +107,12 @@ const AdminDashLayout = (props) => {
                     <a
                       className={classNames(
                         "p-ripple flex align-items-center cursor-pointer py-3 pl-0 pr-2 justify-content-center hover:bg-yellow-600 text-yellow-100 hover:text-yellow-50 transition-duration-150 transition-colors",
-                        { "bg-white": activeTab === 1 }
+                        { "bg-white": activeTab === 1 },
                       )}
-                      onClick={() => {setCurrentActiveTab1(1); setCurrentActiveTab2(null)}}
+                      onClick={() => {
+                        setCurrentActiveTab1(1);
+                        setCurrentActiveTab2(null);
+                      }}
                       style={{
                         borderTopLeftRadius: "30px",
                         borderBottomLeftRadius: "30px",
@@ -122,9 +129,12 @@ const AdminDashLayout = (props) => {
                     <a
                       className={classNames(
                         "p-ripple flex align-items-center cursor-pointer py-3 pl-0 pr-2 justify-content-center hover:bg-yellow-600 text-yellow-100 hover:text-yellow-50 transition-duration-150 transition-colors",
-                        { "bg-white": activeTab === 2 }
+                        { "bg-white": activeTab === 2 },
                       )}
-                      onClick={() => {setCurrentActiveTab1(2); setCurrentActiveTab2(null)}}
+                      onClick={() => {
+                        setCurrentActiveTab1(2);
+                        setCurrentActiveTab2(null);
+                      }}
                       style={{
                         borderTopLeftRadius: "30px",
                         borderBottomLeftRadius: "30px",
@@ -141,9 +151,12 @@ const AdminDashLayout = (props) => {
                     <a
                       className={classNames(
                         "p-ripple flex align-items-center cursor-pointer py-3 pl-0 pr-2 justify-content-center hover:bg-yellow-600 text-yellow-100 hover:text-yellow-50 transition-duration-150 transition-colors",
-                        { "bg-white": activeTab === 3 }
+                        { "bg-white": activeTab === 3 },
                       )}
-                      onClick={() => {setCurrentActiveTab1(3); setCurrentActiveTab2(null)}}
+                      onClick={() => {
+                        setCurrentActiveTab1(3);
+                        setCurrentActiveTab2(null);
+                      }}
                       style={{
                         borderTopLeftRadius: "30px",
                         borderBottomLeftRadius: "30px",
@@ -174,7 +187,9 @@ const AdminDashLayout = (props) => {
               </div>
             </div>
             <div
-              className={classNames("flex flex-column bg-white p-4 overflow-y-auto flex-shrink-0 flex-grow-1 md:flex-grow-0")}
+              className={classNames(
+                "flex flex-column bg-white p-4 overflow-y-auto flex-shrink-0 flex-grow-1 md:flex-grow-0",
+              )}
               style={{ width: "300px", maxHeight: "100vh" }}
             >
               <div className="justify-content-end mb-3 flex lg:hidden">
@@ -207,7 +222,7 @@ const AdminDashLayout = (props) => {
                     <li
                       onClick={() => {
                         setCurrentActiveTab2(0);
-                        setActiveChild("hCMasterForm")
+                        setActiveChild("hCMasterForm");
                         navigate("/hCMasterForm");
                       }}
                       className={classNames("mb-3 flex align-items-start p-3", {
@@ -241,7 +256,7 @@ const AdminDashLayout = (props) => {
                     <li
                       onClick={() => {
                         setCurrentActiveTab2(1);
-                        navigate("/cBMasterForm")
+                        navigate("/cBMasterForm");
                       }}
                       className={classNames("mb-3 flex align-items-start p-3", {
                         "bg-yellow-700": activeTab2 === 1,
@@ -272,8 +287,10 @@ const AdminDashLayout = (props) => {
                       </div>
                     </li>
                     <li
-                      onClick={() => {setCurrentActiveTab2(2);
-                        navigate("/operations")}}
+                      onClick={() => {
+                        setCurrentActiveTab2(2);
+                        navigate("/operations");
+                      }}
                       className={classNames("mb-3 flex align-items-start p-3", {
                         "bg-yellow-700": activeTab2 === 2,
                       })}
@@ -305,7 +322,7 @@ const AdminDashLayout = (props) => {
                     <li
                       onClick={() => {
                         setCurrentActiveTab2(3);
-                        navigate("/breakdown")
+                        navigate("/breakdown");
                       }}
                       className={classNames("mb-3 flex align-items-start p-3", {
                         "bg-yellow-700": activeTab2 === 3,
@@ -448,7 +465,10 @@ const AdminDashLayout = (props) => {
                       </div>
                     </li>
                     <li
-                      onClick={() => {setActiveTab2(3); navigate("/opsCentre");}}
+                      onClick={() => {
+                        setActiveTab2(3);
+                        navigate("/opsCentre");
+                      }}
                       className={classNames("mb-3 flex align-items-start p-3", {
                         "bg-yellow-700": activeTab2 === 3,
                       })}
@@ -765,11 +785,8 @@ const AdminDashLayout = (props) => {
                   className="p-ripple flex p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer
             transition-duration-150 transition-colors"
                 >
-
-                  <CommandMenu className="ml-3"/>
-                  <span className="block lg:hidden font-medium">
-                    Search
-                  </span>
+                  <CommandMenu className="ml-3" />
+                  <span className="block lg:hidden font-medium">Search</span>
                   <Ripple />
                 </a>
               </li>
@@ -799,7 +816,7 @@ const AdminDashLayout = (props) => {
           </div>
           <div className="flex flex-column flex-auto">
             <div className="absolute border-round surface-border surface-section flex-auto scrolling-div">
-              { props.children ? props.children : <DynamicDashboards/>}
+              {props.children ? props.children : <DynamicDashboards />}
             </div>
           </div>
         </div>
